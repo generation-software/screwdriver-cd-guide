@@ -61,6 +61,8 @@ toc:
       url: "#how-do-i-know-if-my-build-ran-with-the-latest-scm-git-sha"
     - title: 'Why do I get "Pipeline does not have admin, unable to start job." message?'
       url: "#why-do-i-get-pipeline-does-not-have-admin-unable-to-start-job-message"
+    - title: 'Why do I get git not found error?'
+      url: "#why-do-i-get-git-not-found-error"
 ---
 
 # Frequently Asked Questions
@@ -288,3 +290,19 @@ _If you have restarted builds from an older event, then first event will not be 
 If a pipeline does not have any active admin, scheduled jobs such as periodic builds will fail. Screwdriver sends this message to Slack/email upon job scheduling failure if Slack/email settings was set for the job.
 
 To resolve this issue, simply sync the pipeline in the Options menu.
+
+## Why do I get git not found error?
+
+![git not found](./assets/git-not-found.png)
+
+This is most likely due to the missing `git` command in the Docker image. To ensure `git` is preinstalled, use
+[buildpack-deps image](https://hub.docker.com/_/buildpack-deps/) with `scm` tags:
+
+```yaml
+jobs:
+  main:
+    requires: [~pr, ~commit]
+    image: buildpack-deps:22.04-scm
+    steps:
+      ...
+```
