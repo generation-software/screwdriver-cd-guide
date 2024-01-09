@@ -60,7 +60,9 @@ Check out the [architecture diagram][arch-diagram] to see the overall workflow o
 
 ## Screwdriver API
 
-The **[screwdriver][api-repo]** repo is the core of screwdriver, providing the API endpoints for everything that screwdriver does. The API is based on the *[hapijs framework](http://hapijs.com/)* and is implemented in node as a series of plugins.
+The **[screwdriver][api-repo]** repo is the core of screwdriver, providing the API endpoints for everything that screwdriver does. The API is based on the *[hapijs framework](https://hapi.dev/)* and is implemented in node as a series of [plugins](https://github.com/QubitPi/screwdriver-cd-screwdriver/tree/master/plugins).
+
+* The entry point is [server.js](https://github.com/QubitPi/screwdriver-cd-screwdriver/blob/master/lib/server.js)
 
 * **[Build bookends][build-bookend-repo]** allows a user to create setup and teardown steps for builds.
 
@@ -112,7 +114,6 @@ Templates are snippets of predefined code that people can use to replace a job d
 * **[templates][templates-repo]**: A repo for all build templates
 * **[template-main][template-main-repo]**: The CLI for validating and publishing job templates
 * **[template-validator][template-validator-repo]**: A tool used by the API to validate a job template
-* **[tmpl-semantic-release][tmpl-semantic-release-repo]**: A template that performs a semantic-release for NPM-based modules
 
 Commands are snippets of predefined code that people can use to replace a step definition in their `screwdriver.yaml`. A command contains a series of predefined commands.
 
@@ -207,7 +208,7 @@ The organization **[screwdriver-cd-test][screwdriver-cd-test-org]** contains var
 
 [api-issues-image]: https://img.shields.io/github/issues/screwdriver-cd/screwdriver.svg
 [api-issues-url]: https://github.com/screwdriver-cd/screwdriver/issues
-[api-repo]: https://github.com/screwdriver-cd/screwdriver
+[api-repo]: https://github.com/QubitPi/screwdriver-cd-screwdriver
 [arch-diagram]: ../../cluster-management/#overall-architecture
 [artifact-bookend-repo]: https://github.com/screwdriver-cd/artifact-bookend
 [aws-build-cluster-repo]: https://github.com/screwdriver-cd/aws-build-cluster
@@ -231,7 +232,7 @@ The organization **[screwdriver-cd-test][screwdriver-cd-test-org]** contains var
 [executor-docker-repo]: https://github.com/screwdriver-cd/executor-docker
 [executor-j5s-repo]: https://github.com/screwdriver-cd/executor-j5s
 [executor-k8s-repo]: https://github.com/screwdriver-cd/executor-k8s
-[executor-nomad-repo]: https://github.com/lgfausak/executor-nomad
+[executor-nomad-repo]: https://github.com/QubitPi/screwdriver-cd-executor-nomad
 [executor-queue-repo]: https://github.com/screwdriver-cd/executor-queue
 [executor-router-repo]: https://github.com/screwdriver-cd/executor-router
 [gitversion-repo]: https://github.com/screwdriver-cd/gitversion
@@ -270,7 +271,6 @@ The organization **[screwdriver-cd-test][screwdriver-cd-test-org]** contains var
 [sonar-pipeline-repo]: https://github.com/screwdriver-cd/sonar-pipeline
 [store-repo]: https://github.com/screwdriver-cd/store
 [store-cli-repo]: https://github.com/screwdriver-cd/store-cli
-[tmpl-semantic-release-repo]: https://github.com/screwdriver-cd/tmpl-semantic-release
 [template-main-repo]: https://github.com/screwdriver-cd/template-main
 [template-validator-repo]: https://github.com/screwdriver-cd/template-validator
 [templates-repo]: https://github.com/screwdriver-cd/templates

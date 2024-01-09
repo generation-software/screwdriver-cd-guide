@@ -45,29 +45,6 @@ Screwdriver の全ての issue は、[screwdriver repo][api-issues-url] にあ�
 
 大掛かりな改善に取り組むときは、それがプロジェクトの目標に沿うものか確認するために事前にお声掛けください。
 
-### コミットメッセージのフォーマット
-
-私達は [semantic-release](https://www.npmjs.com/package/semantic-release) を利用しているので、 コミットメッセージは `<type>(<scope>): <subject>` のフォーマットでなければいけません。
-
-| キーワード | 説明 |
-| ------- | ----------- |
-| Type | feat (機能), fix (バグ修正), docs (ドキュメント), style (コードフォーマットや誤字脱字など), refactor, test (テスト追加), chore (雑多なメンテナンス作業)  |
-| Scope | コミットの範囲を特定するもの。空白や関連する issue 番号、`*` でも構いません。 |
-| Subject | コミットの説明 |
-
-**重要:** メジャーバージョンを更新する必要のある**破壊的変更**の際には、コミットメッセージのフッターに `BREAKING CHANGE: <message>` を追加し、その前にスペースか改行を2文字入れてください。そしてコミットメッセージの残りの部分はその説明に使ってください。
-**コミットメッセージの例:**
-* バグ修正の場合: `fix: Remove extra space`
-* 破壊的変更の場合: 
-
-```
-feat(1234): remove graphiteWidth option
-
-BREAKING CHANGE: The graphiteWidth option has been removed.
-
-The default graphite width of 10mm is always used for performance reasons.
-```
-
 [api-issues-url]: https://github.com/screwdriver-cd/screwdriver/issues
 [api-repo]: https://github.com/screwdriver-cd/screwdriver
 [guide-repo]: https://github.com/screwdriver-cd/guide
