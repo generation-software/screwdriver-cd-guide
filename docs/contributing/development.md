@@ -4,15 +4,15 @@ title: Development
 category: About
 menu: menu
 toc:
-  - title: Getting Started Developing
-    url: "#getting-started-developing"
-  - title: Developing locally
-    url: "#developing-locally"
+  - title: Prerequisites
+    url: "#prerequisites"
     active: true
-  - title: Developing locally with executor-queue
-    url: "#developing-locally-with-executor-queue-and-queue-service"
-  - title: Developing locally with custom launcher
-    url: "#developing-locally-with-a-custom-launcher-image"
+  - title: Setup
+    url: "#setup"
+  - title: Setting up Executor Queue and Queue Service
+    url: "#setting-up-executor-queue-and-queue-service"
+  - title: Using Custom Launcher
+    url: "#using-custom-launcher"
 ---
 
 Development
