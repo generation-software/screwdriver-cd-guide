@@ -13,9 +13,6 @@ toc:
       url: "#general-guidelines-for-contributing"
     - title: Submitting Pull Requests
       url: "#submitting-pull-requests"
-    - title: Commit Message Format
-      url: "#commit-message-format"
-      subitem: true
 ---
 # Contributing
 
@@ -44,30 +41,6 @@ Patches for fixes, features, and improvements are accepted through pull requests
 * Whenever possible, tag your pull request with appropriate Github labels.
 
 _Please ask before embarking on a large improvement so you're not disappointed if it does not align with the goals of the project or owner(s)._
-
-### Commit Message Format
-
-We use [semantic-release](https://www.npmjs.com/package/semantic-release), which requires commit messages to be in this specific format: `<type>(<scope>): <subject>`
-
-| Keyword | Description |
-| ------- | ----------- |
-| Type | feat (feature), fix (bug fix), docs (documentation), style (formatting, missing semi colons, …), refactor, test (when adding missing tests), chore (maintain)  |
-| Scope | anything that specifies the scope of the commit; can be blank, the issue number that your commit pertains to, or `*` |
-| Subject | description of the commit |
-
-**Important:** For any **breaking changes** that require a major version bump, add `BREAKING CHANGE: <message>` preceded by a space or two newlines in the footer of the commit message. The rest of the commit message is then used for this.
-
-**Example commit messages:**
-* For a bug fix: `fix: Remove extra space`
-* For a breaking change:
-
-```
-feat(1234): remove graphiteWidth option
-
-BREAKING CHANGE: The graphiteWidth option has been removed.
-
-The default graphite width of 10mm is always used for performance reasons.
-```
 
 [api-issues-url]: https://github.com/screwdriver-cd/screwdriver/issues
 [api-repo]: https://github.com/screwdriver-cd/screwdriver
