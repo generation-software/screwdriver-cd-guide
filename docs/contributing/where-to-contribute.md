@@ -1,7 +1,7 @@
 ---
 layout: main
 title: Where to Contribute
-category: About
+category: Contributing
 menu: menu
 toc:
   - title: Where to Contribute
