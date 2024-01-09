@@ -89,11 +89,11 @@
 - title: "貢献する"
   subcategories:
     - title: "Overview"
-      url: "/ja/about/contributing/index"
+      url: "/ja/contributing/index"
     - title: "Getting Started Developing"
-      url: "/ja/about/contributing/development"
+      url: "/ja/contributing/development"
     - title: "Where to Contribute"
-      url: "/ja/about/contributing/where-to-contribute"
+      url: "/ja/contributing/where-to-contribute"
 - title: "概要"
   subcategories:
     - title: "Screwdriverとは"
