@@ -25,7 +25,7 @@ toc:
  | Kubernetes             | For running Screwdriver at scale using [executor-k8s](https://github.com/screwdriver-cd/executor-k8s) | [Apache 2.0](https://github.com/kubernetes/kubernetes/blob/master/LICENSE) |
  | MariaDB (Optional) | One of the options for [Database](https://github.com/screwdriver-cd/datastore-sequelize/) | [GPL Licence](https://mariadb.com/kb/en/library/licensing-faq/) |
  | MySQL (Optional) | One of the options for [Database](https://github.com/screwdriver-cd/datastore-sequelize/) | [GPL or Commercial](https://www.mysql.com/about/legal/) |
- | Node.js                | [Most application components](../about/contributing/where-to-contribute) are running in node.js             | [MIT](https://github.com/nodejs/node/blob/master/LICENSE) |
+ | Node.js                | [Most application components](../contributing/where-to-contribute) are running in node.js             | [MIT](https://github.com/nodejs/node/blob/master/LICENSE) |
  | Postgres (Optional) | One of the options for [Database](https://github.com/screwdriver-cd/datastore-sequelize/) | [PostgreSQL Licence](https://opensource.org/licenses/postgresql) |
  | RabbitMQ               | For queueing builds to build clusters | [Mozilla Public License](https://www.rabbitmq.com/mpl.html) |
  | Redis                  | For handling [workflow use-cases](../user-guide/configuration/workflow)(e.g.: periodic builds) | [Three clause BSD license](https://redis.io/topics/license) |

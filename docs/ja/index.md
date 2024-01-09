@@ -20,6 +20,14 @@ is_homepage: 'true'
         <h2>クラスター管理</h2>
         <p>Screwdriverのクラスターを管理する方法については<a href="/screwdriver-cd-guide/ja/cluster-management">クラスター管理</a>セクションをご覧ください。</p>
     </div>
+    <div class="col-xs-6 col-md-4 cm">
+        <h2>Contributing</h2>
+        <p>
+            We believe the way Screwdriver benefits everyone is to let everyone contribute to 
+            it. Please <a href="/screwdriver-cd-guide/contributing">make Screwdriver more 
+            powerful to you!</a>
+        </p>
+    </div>
     <div class="col-xs-6 col-md-4 about">
         <h2>概要</h2>
         <p>Screwdriverについてのその他一般的な情報については<a href="/screwdriver-cd-guide/ja/about">概要</a>セクションをご覧ください。.</p>
