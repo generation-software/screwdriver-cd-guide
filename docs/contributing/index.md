@@ -1,7 +1,7 @@
 ---
 layout: main
 title: Contributing
-category: About
+category: Contributing
 menu: menu
 toc:
   - title: Contributing
