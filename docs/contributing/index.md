@@ -12,7 +12,7 @@ toc:
   - title: General Guidelines for Contributing
     url: "#general-guidelines-for-contributing"
   - title: Submitting Pull Requests
-      url: "#submitting-pull-requests"
+    url: "#submitting-pull-requests"
 ---
 
 Contributing
@@ -23,8 +23,8 @@ Thank you for considering contributing! There are many ways you can help.
 What to Work On
 ---------------
 
-Screwdriver is a "distributed" project where each component sits in its own GitHub Repo. If you're not sure what 
-repositories you need to change, please refer to our [Where to Contribute doc](./where-to-contribute). 
+Screwdriver is a "distributed" project where each component sits in its own GitHub Repo. If you're not sure what
+repositories you need to change, please refer to our [Where to Contribute doc](./where-to-contribute).
 For pointers on developing, checkout the [Getting Started Developing docs](./getting-started-developing).
 
 Our documentation, however, is centralized at
@@ -48,16 +48,16 @@ Submitting Pull Requests
 
 Patches for fixes, features, and improvements are accepted through pull requests. Here are some tips for contributing:
 
-- Write good commit messages in the present tense ("Add X", not "Added X") with a short title, blank line, and bullet 
+- Write good commit messages in the present tense ("Add X", not "Added X") with a short title, blank line, and bullet
   points if needed. Capitalize the first letter of the title and any bullet items. No punctuation in the title.
 - Code must pass lint and style checks.
-- All external methods must be documented. Add README docs and/or user documentation in our [guide][guide-repo] when 
+- All external methods must be documented. Add README docs and/or user documentation in our [guide][guide-repo] when
   appropriate.
 - Include tests to improve coverage and prevent regressions.
 - Squash changes into a single commit per feature/fix. Ask if you're unsure how to discretize your work.
 - Whenever possible, tag your pull request with appropriate Github labels.
 
-_Please ask before embarking on a large improvement so you're not disappointed if it does not align with the goals of 
+_Please ask before embarking on a large improvement so you're not disappointed if it does not align with the goals of
 the project or owner(s)._
 
 [documentation]: https://qubitpi.github.io/screwdriver-cd-guide/

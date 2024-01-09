@@ -21,6 +21,14 @@ is_homepage: true
         <p>To find more information about managing your own Screwdriver cluster,
         visit the <a href="/screwdriver-cd-guide/cluster-management">Cluster Management</a> section.</p>
     </div>
+    <div class="col-xs-6 col-md-4 cm">
+        <h2>Contributing</h2>
+        <p>
+            We believe the way Screwdriver benefits everyone is to let everyone contribute to 
+            it. Please <a href="/screwdriver-cd-guide/contributing">make Screwdriver more 
+            powerful to you!</a>
+        </p>
+    </div>
     <div class="col-xs-6 col-md-4 about">
         <h2>About</h2>
         <p>To learn more about Screwdriver in general, visit the <a href="/screwdriver-cd-guide/about">About</a> section.</p>
