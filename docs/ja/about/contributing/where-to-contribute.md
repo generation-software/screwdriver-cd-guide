@@ -113,7 +113,6 @@ Parsersは、Screwdriverの様々なフローを検証し、解析するのに�
 * **[templates][templates-repo]**: 全てのビルドテンプレートのリポジトリ
 * **[template-main][template-main-repo]**: ジョブテンプレートの validate や publish のための CLI
 * **[template-validator][template-validator-repo]**: API によってジョブテンプレートを validate するのに使われるツール
-* **[tmpl-semantic-release][tmpl-semantic-release-repo]**: NPMベースのモジュールのセマンティックリリースを実行するテンプレート
 
 コマンドとは、あらかじめ定義されたコードの断片で、`screwdriver.yaml`のステップ定義を置き換えるために使用できます。コマンドにはすでに定義したコマンドを含めることができます。
 
@@ -230,7 +229,7 @@ Screwdriver のリポジトリを新しく作成する際の手助けとなる�
 [executor-docker-repo]: https://github.com/screwdriver-cd/executor-docker
 [executor-j5s-repo]: https://github.com/screwdriver-cd/executor-j5s
 [executor-k8s-repo]: https://github.com/screwdriver-cd/executor-k8s
-[executor-nomad-repo]: https://github.com/lgfausak/executor-nomad
+[executor-nomad-repo]: https://github.com/QubitPi/screwdriver-cd-executor-nomad
 [executor-queue-repo]: https://github.com/screwdriver-cd/executor-queue
 [executor-router-repo]: https://github.com/screwdriver-cd/executor-router
 [gitversion-repo]: https://github.com/screwdriver-cd/gitversion
@@ -269,7 +268,6 @@ Screwdriver のリポジトリを新しく作成する際の手助けとなる�
 [sonar-pipeline-repo]: https://github.com/screwdriver-cd/sonar-pipeline
 [store-repo]: https://github.com/screwdriver-cd/store
 [store-cli-repo]: https://github.com/screwdriver-cd/store-cli
-[tmpl-semantic-release-repo]: https://github.com/screwdriver-cd/tmpl-semantic-release
 [template-main-repo]: https://github.com/screwdriver-cd/template-main
 [template-validator-repo]: https://github.com/screwdriver-cd/template-validator
 [templates-repo]: https://github.com/screwdriver-cd/templates
