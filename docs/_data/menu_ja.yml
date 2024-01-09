@@ -92,6 +92,14 @@
       url: "/ja/cluster-management/collect-metrics"
     - title: "FAQ"
       url: "/ja/cluster-management/FAQ"
+- title: "貢献する"
+  subcategories:
+    - title: "Overview"
+      url: "/ja/about/contributing/index"
+    - title: "Getting Started Developing"
+      url: "/ja/about/contributing/development"
+    - title: "Where to Contribute"
+      url: "/ja/about/contributing/where-to-contribute"
 - title: "概要"
   subcategories:
     - title: "Screwdriverとは"
@@ -100,16 +108,6 @@
       subcategories:
         - title: "ドメインモデル"
           url: "/ja/about/appendix/domain"
-    - title: "貢献する"
-      subcategories:
-        - title: "Issues"
-          url: "/ja/about/contributing/issues"
-        - title: "Where to Contribute"
-          url: "/ja/about/contributing/where-to-contribute"
-        - title: "Getting Started Developing"
-          url: "/ja/about/contributing/getting-started-developing"
-        - title: "Overview"
-          url: "/ja/about/contributing/index"
     - title: "サポート"
       url: "/ja/about/support"
     - title: "アナウンス"
