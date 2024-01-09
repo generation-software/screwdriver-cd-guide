@@ -148,12 +148,15 @@ Simply add a new markdown document to the folder hierarchy in `docs`, and add an
     - [x] Secrets
   - [x] Templates
   - [x] FAQ
+- [x] Contributing
+  - [x] Overview
+  - [x] Development
+  - [x] Where to Contribute?
 - About
   - [x] What is SD?
   - [x] Appendix
     - [x] Domain model
     - [x] Execution engines
-  - [x] Contributing
   - [x] Support
 
 [GitHub Workflow Status badge]: https://img.shields.io/github/actions/workflow/status/QubitPi/screwdriver-cd-guide/ci-cd.yml?branch=master&logo=github&style=for-the-badge

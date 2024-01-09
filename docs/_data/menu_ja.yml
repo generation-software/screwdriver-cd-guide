@@ -90,7 +90,7 @@
   subcategories:
     - title: "Overview"
       url: "/ja/contributing/index"
-    - title: "Getting Started Developing"
+    - title: "Development"
       url: "/ja/contributing/development"
     - title: "Where to Contribute"
       url: "/ja/contributing/where-to-contribute"
