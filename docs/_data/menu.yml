@@ -95,11 +95,11 @@
 - title: "Contributing"
   subcategories:
     - title: "Overview"
-      url: "/screwdriver-cd-guide/about/contributing/index"
+      url: "/screwdriver-cd-guide/contributing/index"
     - title: "Getting Started Developing"
-      url: "/screwdriver-cd-guide/about/contributing/development"
+      url: "/screwdriver-cd-guide/contributing/development"
     - title: "Where to Contribute"
-      url: "/screwdriver-cd-guide/about/contributing/where-to-contribute"
+      url: "/screwdriver-cd-guide/contributing/where-to-contribute"
 - title: "About"
   subcategories:
     - title: "What is Screwdriver?"
