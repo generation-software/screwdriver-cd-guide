@@ -25,7 +25,7 @@ What to Work On
 
 Screwdriver is a "distributed" project where each component sits in its own GitHub Repo. If you're not sure what
 repositories you need to change, please refer to our [Where to Contribute doc](./where-to-contribute).
-For pointers on developing, checkout the [Getting Started Developing docs](./getting-started-developing).
+For pointers on developing, checkout the [Development docs](./getting-started-developing).
 
 Our documentation, however, is centralized at
 
