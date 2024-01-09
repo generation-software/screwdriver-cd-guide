@@ -45,7 +45,7 @@ Screwdriver をローカルで実行してテストするために、ローカ�
 *  Authorization callback URL: `http://sd.screwdriver.cd:9001/v4/auth/login`
 
 以下のスクリーンショットをご覧ください。
-![developing-locally-ouath](../../../cluster-management/assets/developing-locally-ouath.png)
+![developing-locally-ouath](../../cluster-management/assets/developing-locally-ouath.png)
 
 > 次のステップで必要になるため、client IDとclient Secretをメモしておいてください。
 

@@ -53,7 +53,7 @@ below:
 
 See screenshot below
 
-![developing-locally-ouath](../../cluster-management/assets/developing-locally-ouath.png)
+![developing-locally-ouath](../cluster-management/assets/developing-locally-ouath.png)
 
 > Take note of the client ID and the client Secret, we'll need them in the following step
 
