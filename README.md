@@ -1,6 +1,7 @@
 # Screwdriver Guide
 
-[![Build Status][status-image]][status-url] [![Open Issues][issues-image]][issues-url]
+[![GitHub Workflow Status][GitHub Workflow Status badge]][GitHub Workflow Status URL]
+![Last Commit][GitHub Commit badge]
 
 > Documentation for the Screwdriver CD service
 
@@ -156,7 +157,6 @@ Simply add a new markdown document to the folder hierarchy in `docs`, and add an
   - [x] Contributing
   - [x] Support
 
-[issues-image]: https://img.shields.io/github/issues/screwdriver-cd/screwdriver.svg
-[issues-url]: https://github.com/screwdriver-cd/screwdriver/issues
-[status-image]: https://cd.screwdriver.cd/pipelines/27/badge
-[status-url]: https://cd.screwdriver.cd/pipelines/27
+[GitHub Workflow Status badge]: https://img.shields.io/github/actions/workflow/status/QubitPi/screwdriver-cd-guide/ci-cd.yml?branch=master&logo=github&style=for-the-badge
+[GitHub Workflow Status URL]: https://github.com/QubitPi/screwdriver-cd-guide/actions/workflows/ci-cd.yml
+[GitHub Commit badge]: https://img.shields.io/github/last-commit/QubitPi/screwdriver-cd-guide/master?logo=github&style=for-the-badge
