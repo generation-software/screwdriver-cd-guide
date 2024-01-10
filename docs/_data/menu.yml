@@ -42,6 +42,8 @@
           url: "/screwdriver-cd-guide/user-guide/configuration/build-cache"
         - title: "Parameters"
           url: "/screwdriver-cd-guide/user-guide/configuration/parameters"
+    - title: "Docker Executor"
+      url: "/screwdriver-cd-guide/user-guide/executor-docker"
     - title: "Metadata"
       url: "/screwdriver-cd-guide/user-guide/metadata"
     - title: "Environment Variables"
@@ -100,6 +102,10 @@
       url: "/screwdriver-cd-guide/contributing/development"
     - title: "Where to Contribute"
       url: "/screwdriver-cd-guide/contributing/where-to-contribute"
+    - title: "Components"
+      subcategories:
+        - title: "Docker Executor"
+          url: "/screwdriver-cd-guide/contributing/components/executor-docker"
 - title: "About"
   subcategories:
     - title: "What is Screwdriver?"
