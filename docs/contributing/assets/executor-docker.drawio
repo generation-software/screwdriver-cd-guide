@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2024-01-09T12:11:00.222Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="E1G3V_HtGbtOlSziy1Y0" version="22.1.16" type="device">
+  <diagram name="Page-1" id="GQYDrpgdHATJGK8JRFHD">
+    <mxGraphModel dx="1306" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-1" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#2D95FE;" vertex="1" parent="1">
+          <mxGeometry x="260" y="100" width="330" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;" edge="1" parent="1" source="Mu5ReMU_I4Biwvlbo8aD-2" target="Mu5ReMU_I4Biwvlbo8aD-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-2" value="&lt;div style=&quot;background-color: rgb(255, 255, 255); color: rgb(8, 8, 8);&quot;&gt;&lt;font size=&quot;1&quot; style=&quot;&quot; face=&quot;Ubuntu&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;dockerode&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="365" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-3" value="&lt;font size=&quot;1&quot; color=&quot;#ffffff&quot;&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;screwdriver-cd-executor-docker&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="260" y="120" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=3;" edge="1" parent="1" source="Mu5ReMU_I4Biwvlbo8aD-4" target="Mu5ReMU_I4Biwvlbo8aD-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=3;" edge="1" parent="1" source="Mu5ReMU_I4Biwvlbo8aD-4" target="Mu5ReMU_I4Biwvlbo8aD-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-4" value="&lt;font size=&quot;1&quot; color=&quot;#2f66d3&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Docker Engine API&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#2F66D3;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="365" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-6" value="&lt;font size=&quot;1&quot; color=&quot;#2f66d3&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Docker&lt;br&gt;Image&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#2F66D3;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="245" y="510" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Mu5ReMU_I4Biwvlbo8aD-7" value="&lt;font size=&quot;1&quot; color=&quot;#2f66d3&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Docker&lt;br&gt;Container&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#2F66D3;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="485" y="510" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
