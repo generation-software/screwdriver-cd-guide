@@ -23,7 +23,7 @@ toc:
 
 ## 何に取り組むべきか
 
-Screwdriver の全ての issue は、[screwdriver repo][api-issues-url] にあります。私達が現在何に取り組んでいるかは、[Screwdriver API repo][api-repo] の Projects にある [digital scrum board](https://github.com/screwdriver-cd/screwdriver/projects/4) をチェックしてください。どのリポジトリを変更すればよいか分からなければ、[どこに貢献するか](./where-to-contribute)のドキュメントを参照してください。開発の指針に関しては、[開発を開始する](./getting-started-developing)のドキュメントを確認してください。
+Screwdriver の全ての issue は、[screwdriver repo][api-issues-url] にあります。私達が現在何に取り組んでいるかは、[Screwdriver API repo][api-repo] の Projects にある [digital scrum board](https://github.com/screwdriver-cd/screwdriver/projects/4) をチェックしてください。どのリポジトリを変更すればよいか分からなければ、[どこに貢献するか](./where-to-contribute)のドキュメントを参照してください。開発の指針に関しては、[開発を開始する](./development)のドキュメントを確認してください。
 
 ## 貢献のための一般的なガイドライン
 
