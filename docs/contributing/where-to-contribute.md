@@ -158,9 +158,8 @@ builds and process them. It makes use of [Resque][node-resque-URL] to add a queu
 
 ### Executors
 
-An executor is used to manage build containers for any given job. All of our [screwdriver steps] inside the container.
-Several implementations of executors have been created. All are designed to follow a common interface. Executor 
-implementations are written in node:
+An executor is used to manage build containers for any given job. Several implementations of executors have been 
+created. All are designed to follow a common interface. Executor implementations are written in node:
 
 - **[executor-base][executor-base-repo]**: Common interface
 - **[executor-docker][executor-docker-repo]**: Docker implementation
@@ -297,7 +296,6 @@ acceptance tests for [Screwdriver.cd](https://cd.screwdriver.cd).
 [scm-router-repo]: https://github.com/QubitPi/screwdriver-cd-scm-router
 [screwdriver-cd-test-org]: https://github.com/screwdriver-cd-test
 [screwdriver-chart-repo]: https://github.com/QubitPi/screwdriver-cd-screwdriver-chart
-[screwdriver steps]: https://qubitpi.github.io/screwdriver-cd-guide/user-guide/quickstart#steps
 [sd-cmd-repo]: https://github.com/QubitPi/screwdriver-cd-sd-cmd
 [sd-housekeeping-repo]: https://github.com/QubitPi/screwdriver-cd-sd-housekeeping
 [sd-local-repo]: https://github.com/QubitPi/screwdriver-cd-sd-local
