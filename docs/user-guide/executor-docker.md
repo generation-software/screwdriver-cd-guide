@@ -61,6 +61,27 @@ If the host machine runs Docker Desktop, simply add **/sd** to the file sharing 
 
 ![Configuring File Sharing on Docker Desktop](assets/configure-file-sharing.png)
 
+### ERROR: Can't initialize batch_readline - may be the input source is a directory or a block device.
+
+This usually happens when we are running MySQL Docker or Docker Compose containing MySQL service inside Docker executor.
+For example:
+
+```yaml
+version: "3.9"
+services:
+  db:
+    image: "mysql:5.7.43"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql
+```
+
+We are sure `mysql-init.sql` is a file, but when we are executing it in MySQL docker generates the error above. The 
+underlying reason causing the file being shared with -v to appear as a directory instead of a file is that _Docker
+could not find the file on the host because it is running Docker-in-Docker_. Being a Docker container path, `.
+/mysql-init.sql` should be changed to the path on the host machine.
+
 [Docker Engine API]: https://docs.docker.com/engine/api/
 [dockerode]: https://github.com/apocas/dockerode
 
