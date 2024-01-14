@@ -38,50 +38,13 @@ jobs:
       - spin-up-webservice: docker compose up
 ```
 
-It is very important, from a developer's perspective, to understand what's happening behind scene. To start off, we
-need to talk about [/var/run/docker.sock](#what-is-varrundockersock)
+It is very important, from a developer's perspective, to understand what's happening behind scene. Specifically, having
+a solid understanding of
+[/var/run/docker.sock](https://qubitpi.github.io/docker-docs/engine/reference/commandline/dockerd/#daemon-socket-option)
+is crucial.
 
-#### What is /var/run/docker.sock?
-
-`/var/run/docker.sock` is the default Unix socket. Sockets are meant for communication between processes on the same
-host.
-
-![Error loading docker-docker-unix-socket.png](../assets/docker-docker-unix-socket.png)
-
-Docker daemon by default listens to **docker.sock**. If we are on the same host where the Docker daemon is running, we
-can use the `/var/run/docker.sock` to manage containers, which means we can mount the Docker socket from the host into
-the container.
-
-For example, if we run the following command, it will return the version of the docker engine.
-
-```bash
-curl --unix-socket /var/run/docker.sock http://localhost/version
-```
-
-To run docker inside docker, we run docker with the default Unix socket `docker.sock` as a volume.
-
-For example
-
-```bash
-docker run -v /var/run/docker.sock:/var/run/docker.sock -it docker
-```
-
-Now, from within the container, we should be able to execute docker commands for building and pushing images to the
-registry. _This looks like Docker-in-Docker, feels like Docker-in-Docker, but it's not Docker-in-Docker._ When this 
-container will create more containers, those containers will be created in the top-level Docker. We will not experience 
-nesting side effects, and the build cache will be shared across multiple invocations. Those containers are not "child" 
-containers, but more accurately "sibling" containers. The actual docker operations happen on the VM host running our 
-base docker container rather than from within the container. Meaning, even though we are executing the docker commands 
-from within the container, we are instructing the docker client to connect to the VM host docker-engine through 
-`docker.sock`
-
-**Just a word of caution**: If a container gets access to `docker.sock`, it means it has more privileges over docker
-daemon. So when used in real projects, understand the security risks, and use it.
-
-#### Socket Solution
-
-The `docker.sock` mentioned above is integrated into [screwdriver-cd-executor-docker] via this [Docker Engine API]
-instruction in [index.js]():
+The `/var/run/docker.sock` is integrated into [screwdriver-cd-executor-docker] via this [Docker Engine API] instruction 
+in [index.js](https://github.com/QubitPi/screwdriver-cd-executor-docker/blob/master/index.js):
 
 ```javascript
 HostConfig: {
@@ -101,5 +64,3 @@ Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docke
 [dockerode]: https://github.com/apocas/dockerode
 
 [screwdriver-cd-executor-docker]: https://github.com/QubitPi/screwdriver-cd-executor-docker
-
-
