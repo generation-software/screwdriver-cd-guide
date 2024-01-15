@@ -6,8 +6,10 @@ menu: menu
 toc:
     - title: Templates
       url: "#templates"
+      
     - title: Finding templates
       url: "#finding-templates"
+      
     - title: Using a template
       url: "#using-a-template"
     - title: "Version/Tag Semantics"
@@ -16,53 +18,84 @@ toc:
     - title: Overriding Template Steps
       url: "#overriding-template-steps"
       subitem: true
-    - title: Wrap a Step
-      url: "#wrap"
+    - title: Wrapping Steps
+      url: "#wrapping-steps"
       subitem: level-2
-    - title: Replace a Step
-      url: "#replace"
+    - title: Replacing Steps
+      url: "#replacing-steps"
       subitem: level-2
     - title: Merging with Shared Steps
       url: "#merging-with-shared-steps"
-      subitem: level-2
-    - title: Order
-      url: "#order"
-      subitem: level-2
-    - title: Creating a template
-      url: "#creating-a-template"
-    - title: Writing a template yaml
-      url: "#writing-a-template-yaml"
       subitem: true
-    - title: Template images
+    - title: Ordering
+      url: "#orderING"
+      subitem: true
+
+    - title: Creating a Template
+      url: "#creating-a-template"
+    - title: Writing a Template in YAML
+      url: "#writing-a-template-in-yaml"
+      subitem: true
+    - title: Template Images
       url: "#template-images"
       subitem: level-2
-    - title: Template steps
+    - title: Template Steps
       url: "#template-steps"
       subitem: level-2
-    - title: Template locked steps
+    - title: Template Locked Steps
       url: "#template-locked-steps"
       subitem: level-2
-    - title: Template parameters
+    - title: Template Parameters
       url: "#template-parameters"
+      subitem: level-2
+    - title: Caveats
+      url: "#caveats"
       subitem: level-2
     - title: Template composition
       url: "#template-composition"
       subitem: true
-    - title: Writing a screwdriver yaml
-      url: "#writing-a-screwdriver-yaml-for-your-template-repo"
+
+    - title: Publishing a Template
+      url: "#publishing-a-template" 
+    - title: Writing a screwdriver.yaml File
+      url: "#writing-a-screwdriveryaml-file"
       subitem: true
-    - title: Validating templates
-      url: "#validating-templates"
+    - title: Validating Template
+      url: "#validating-template"
+      subitem: true
+    - title: Publishing Template
+      url: "#publishing-template"
+      subitem: true
+    - title: Tagging Template
+      url: "#tagging-template"
       subitem: level-2
-    - title: Tagging templates
-      url: "#tagging-templates"
-      subitem: level-2
+    - title: Running Pipeline
+      url: "#running-pipeline"
+      subitem: level-2 
+    - title: Updating Template
+      url: "#updating-template"
+      subitem: true
+
     - title: Testing a template
       url: "#testing-a-template"
+
     - title: Using the build cache
       url: "#using-the-build-cache"
+
     - title: Removing a template
       url: "#removing-a-template"
+    - title: Using screwdriver-template-main npm Package
+      url: "#using-screwdriver-template-main-npm-package"
+      subitem: true
+    - title: Through UI
+      url: "#through-ui"
+      subitem: true
+
+    - title: Troubleshooting
+      url: "#troubleshooting"
+    - title: Creating Template Using Screwdriver API Fails
+      url: "#creating-template-using-screwdriver-api-fails"
+      subitem: true
 ---
 
 Templates
@@ -339,7 +372,7 @@ jobs:
       - coverage: ./ci/coverage.sh  # This step was overwritten by the job
 ```
 
-#### Caveats
+Caveats:
 
 - `order` can only be used when `template` is used.
 - Steps that cannot be found will be skipped.
@@ -632,7 +665,7 @@ config:
     - coverage: ./ci/coverage.sh  # This step was overwritten by the d2lam/personal template
 ```
 
-#### Caveats
+Caveats:
 
 - `order` can only be used when `template` is used.
 - Steps that cannot be found will be skipped.
