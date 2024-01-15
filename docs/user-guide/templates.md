@@ -64,205 +64,234 @@ toc:
     - title: Removing a template
       url: "#removing-a-template"
 ---
-# Templates
 
-Templates are snippets of predefined code that people can use to replace a job definition in a [screwdriver.yaml](./configuration). A template contains a series of predefined steps along with a selected Docker image.
+Templates
+=========
 
-## Finding templates
+Templates are snippets of predefined code that people can use to replace a job definition in a
+[screwdriver.yaml](./configuration). A template contains a series of predefined steps along with a selected Docker
+image.
 
-To figure out which templates already exist, you can make a `GET` call to the `/templates` [API](./api) endpoint. You can also see templates in the UI at `<YOUR_UI_URL>/templates`.
+Finding Templates
+-----------------
+
+To figure out which templates already exist, we can make a `GET` call to the `/templates` [API](./api) endpoint. We can
+also browse templates in the UI at `<YOUR_UI_URL>/templates`.
 
 Example templates page:
+
 ![Templates](assets/templates.png)
 
-## Using a template
+Using a Template
+----------------
 
-To use a template, define a `screwdriver.yaml` with a `template` key. In this example, we are using the [nodejs/test template](https://cd.screwdriver.cd/templates/nodejs/test).
+To use a template, define a `screwdriver.yaml` with a `template` key. In this example, we are using the
+[nodejs/test template](https://cd.screwdriver.cd/templates/nodejs/test).
 
 Example `screwdriver.yaml`:
 
 ```yaml
 jobs:
-    main:
-        requires: [~pr, ~commit]
-        template: nodejs/test@1.0.4
+  main:
+    requires: [~pr, ~commit]
+    template: nodejs/test@1.0.4
 ```
 
-Version is [semver](https://semver.org/) compatible. For example you can refer above template with `nodejs/test@1` or `nodejs/test@1.0`
+Version is [semver](https://semver.org/) compatible. For example, we can refer the template above with `nodejs/test@1`
+or `nodejs/test@1.0`
 
-You can also refer to a template version with a tag name if the template has one. All the versions and tags of a template are displayed at the bottom of a template's description, such as for [the example template](https://cd.screwdriver.cd/templates/nodejs/test), which has the tags `latest` and `stable`.
+You can also refer to a template version with a tag name if the template has one. All the versions and tags of a
+template are displayed at the bottom of a template's description, such as for
+[the example template](https://cd.screwdriver.cd/templates/nodejs/test), which has the tags `latest` and `stable`.
 
-Most templates will tag the most recent version as `latest`, and many templates use either automated testing or manual curation to identify some version as `stable`. These are floating tags, so using them in a job means its template-provided steps may suddenly change.
+Most templates will tag the most recent version as `latest`, and many templates use either automated testing or manual
+curation to identify some version as `stable`. These are floating tags, so using them in a job means its
+template-provided steps may suddenly change.
 
-If no template version is specified, the most recently published will be used. This is usually synonymous with specifying the `latest` tag. It is generally better to explicitly state a template version than to implictly use `latest`.
+If no template version is specified, the most recently published will be used. This is usually synonymous with
+specifying the `latest` tag. It is generally better to explicitly state a template version than to implictly use
+`latest`.
 
-The most reliable way to avoid unexpected template changes is to refer to a specific version of the template. For instance, `nodejs/test@1.0.4` is an immutable reference to a particular list of steps. Using a reference such as `nodejs/test@1.0` means that a job will automatically use `nodejs/test@1.0.5` when it becomes available, but that comes with risk of an unexpected change in behavior.
+The most reliable way to avoid unexpected template changes is to refer to a specific version of the template. For
+instance, `nodejs/test@1.0.4` is an immutable reference to a particular list of steps. Using a reference such as
+`nodejs/test@1.0` means that a job will automatically use `nodejs/test@1.0.5` when it becomes available, but that comes
+with risk of an unexpected change in behavior.
 
-## Version/Tag Semantics
+### Version/Tag Semantics
 
-Template versions can be referenced in a variety of ways that express users' trade-off between an unchanging set of steps and automatically using improvements that a template's maintainers have added. As above, these examples reference [nodejs/test template](https://cd.screwdriver.cd/templates/nodejs/test).
+Template versions can be referenced in a variety of ways that express users' trade-off between an unchanging set of
+steps and automatically using improvements that a template's maintainers have added. As above, these examples reference
+[nodejs/test template](https://cd.screwdriver.cd/templates/nodejs/test).
 
-* `nodejs/test@latest` - this will use the most recently published version of the template, which may include backwards-incompatible changes, major version changes, etc. The `latest` tag should primarily be used by a template's maintainers and may be unsuitable for production or similarly important builds.
-* `nodejs/test@stable` - this will use a version of the template that its maintainers have designated as sufficiently stable for general usage. It may represent a significant change in capability from older uses of the `stable` tag. Template maintainers should communicate to users when changes to the `stable` tag are not backwards compatible.
-* `nodejs/test@1` - this will use the most recent version of `nodejs/test` that is less than 2.0.0. This is essentially the `latest` tag without crossing a major version boundary.
-* `nodejs/test@1.0` - this will use the most recent version of `nodejs/test` than is less than 1.1.0. This is essentially the `latest` tag without crossing a minor version boundary.
-* `nodejs/test@1.0.4` - this is the most predictable way to specify a pipeline's behavior and is not affected by future changes to the template.
+- `nodejs/test@latest` - this will use the most recently published version of the template, which may include
+  backwards-incompatible changes, major version changes, etc. The `latest` tag should primarily be used by a template's
+  maintainers and may be unsuitable for production or similarly important builds.
+- `nodejs/test@stable` - this will use a version of the template that its maintainers have designated as sufficiently
+  stable for general usage. It may represent a significant change in capability from older uses of the `stable` tag.
+  Template maintainers should communicate to users when changes to the `stable` tag are not backwards compatible.
+- `nodejs/test@1` - this will use the most recent version of `nodejs/test` that is less than 2.0.0. This is essentially
+  the `latest` tag without crossing a major version boundary.
+- `nodejs/test@1.0` - this will use the most recent version of `nodejs/test` than is less than 1.1.0. This is
+  essentially the `latest` tag without crossing a minor version boundary.
+- `nodejs/test@1.0.4` - this is the most predictable way to specify a pipeline's behavior and is not affected by future
+  changes to the template.
 
 #### Example
 
 For this configuration:
+
 ```yaml
 jobs:
-    main:
-        requires: [~pr, ~commit]
-        template: nodejs/test@stable
+  main:
+    requires: [~pr, ~commit]
+    template: nodejs/test@stable
 ```
-
 
 Screwdriver takes the template configuration and plugs it in, so that the `screwdriver.yaml` becomes:
 
 ```yaml
 jobs:
-    main:
-        image: node:8
-        requires: [~pr, ~commit]
-        steps:
-          - install: npm install
-          - test: npm test
-        environment:
-            FOO: bar
-        secrets:
-              - NPM_TOKEN
+  main:
+    image: node:8
+    requires: [~pr, ~commit]
+    steps:
+      - install: npm install
+      - test: npm test
+    environment:
+      FOO: bar
+    secrets:
+      - NPM_TOKEN
 ```
-## Overriding Template Steps
 
-A job can override Template steps by wrapping or replacing existing steps.
+### Overriding Template Steps
 
-### Wrap
-Wrapping is when you add commands to run before and/or after an existing step. To wrap a step from a template, add a `pre` or `post` in front of the step name.
+A job can override Template steps by [wrapping](#wrapping-steps) or [replacing](#replacing-steps) existing steps.
+
+#### Wrapping Steps
+
+Wrapping is when we add commands to run before and/or after an existing step. To wrap a step from a template, add a
+`pre` or `post` in front of the step name. For Example:
+
+```yaml
+jobs:
+  main:
+    requires: [~pr, ~commit]
+    template: nodejs/test@1.0.3
+    steps:
+      - preinstall: echo pre-install
+      - postinstall: echo post-install
+```
+
+This will run the command `echo pre-install` before the template's `install` step, and `echo post-install` after the
+template's `install` step.
+
+#### Replacing Steps
+
+To replace a step from a template, add our command with the same template's step name.
 
 Example:
 ```yaml
 jobs:
-    main:
-        requires: [~pr, ~commit]
-        template: nodejs/test@1.0.3
-        steps:
-            - preinstall: echo pre-install
-            - postinstall: echo post-install
-```
-
-This will run the command `echo pre-install` before the template's `install` step, and `echo post-install` after the template's `install` step.
-
-### Replace
-To replace a step from a template, add your command with the same template's step name.
-
-Example:
-```yaml
-jobs:
-    main:
-        requires: [~pr, ~commit]
-        template: nodejs/test@1.0.3
-        steps:
-            - install: echo skip installing
+  main:
+    requires: [~pr, ~commit]
+    template: nodejs/test@1.0.3
+    steps:
+      - install: echo skip installing
 ```
 
 This will run the command `echo skip installing` for the `install` step.
 
-Note: You cannot replace a [locked step](#template-locked-steps).
+Note: We cannot replace a [locked step](#template-locked-steps).
 
-You can also replace the image defined in the template. Some template steps might rely on commands or environment invariants that your image may not have, so be careful when replacing.
+We can also replace the image defined in the template. Some template steps might rely on commands or environment
+invariants that our image may not have, so be careful with image replacement.
 
 Example:
 ```yaml
 jobs:
-    main:
-        requires: [~pr, ~commit]
-        image: node:latest
-        template: nodejs/test@1.0.3
+  main:
+    requires: [~pr, ~commit]
+    image: node:latest
+    template: nodejs/test@1.0.3
 ```
 
-### Merging with shared steps
+### Merging with Shared Steps
 
-When overriding Template steps, a job can get the step definitions from either `shared.steps` or `job.steps` with precedence for `steps` defined in `job` section. This follows the same order of precedence for step definitions without using a template. Users can change this behavior using [annotation](./configuration/annotations) `screwdriver.cd/mergeSharedSteps: true`. When `true` steps in `shared` and `job` sections are merged when a Template is used.
+When overriding Template steps, a job can get the step definitions from either `shared.steps` or `job.steps` with
+precedence for `steps` defined in `job` section. This follows the same order of precedence for step definitions without
+using a template. Users can change this behavior using [annotation](./configuration/annotations)
+`screwdriver.cd/mergeSharedSteps: true`. When set to `true`, steps in `shared` and `job` sections are merged when a
+Template is used.
 
-
-#### Example
+For example
 
 ```yaml
 shared:
   annotations:
     screwdriver.cd/mergeSharedSteps: true
   steps:
-     - premotd: echo build
+    - premotd: echo build
 jobs:
-    main:
-        template: python/package_rpm@latest
-        requires: [~pr, ~commit]
-        steps:
-         - preinit_os: echo replace
-
+main:
+  template: python/package_rpm@latest
+  requires: [~pr, ~commit]
+  steps:
+    - preinit_os: echo replace
 ```
 
-#### Example
-The following example defines a merged shared configuration for `image` and `steps`, which is used by the main and main2 jobs.
+The following example defines a merged shared configuration for `image` and `steps`, which is used by the `main` and
+`main2` jobs.
 
 ```yaml
 shared:
-    image: node:8
-    template: nodejs/test
-    steps:
-        - init: npm install
-        - pretest: npm lint
-        - test: npm test
+  image: node:8
+  template: nodejs/test
+  steps:
+    - init: npm install
+    - pretest: npm lint
+    - test: npm test
 
 jobs:
-    main:
-        requires: [~pr, ~commit]
-        image: node:6
-    main2:
-        annotations:
-            screwdriver.cd/mergeSharedSteps: true
-        requires: [main]
-        steps:
-            - test: echo Skipping test
+  main:
+    requires: [~pr, ~commit]
+    image: node:6
+  main2:
+    annotations:
+      screwdriver.cd/mergeSharedSteps: true
+    requires: [main]
+    steps:
+      - test: echo Skipping test
 ```
 
 The above example would be equivalent to:
 
 ```yaml
 jobs:
-    main:
-        requires: [~pr, ~commit]
-        image: node:6
-        steps:
-             - init: npm install
-             - pretest: npm lint
-             - test: npm test
-    main2:
-        annotations:
-             screwdriver.cd/mergeSharedSteps: true
-        requires: [main]
-        image: node:8
-        steps:
-             - init: npm install
-             - pretest: npm lint
-             - test: echo Skipping test
-
+  main:
+    requires: [~pr, ~commit]
+    image: node:6
+    steps:
+      - init: npm install
+      - pretest: npm lint
+      - test: npm test
+  main2:
+    annotations:
+      screwdriver.cd/mergeSharedSteps: true
+    requires: [main]
+    image: node:8
+    steps:
+      - init: npm install
+      - pretest: npm lint
+      - test: echo Skipping test
 ```
 
-### Order
-When using a template in your configuration, you can pick and choose steps defined by the template and your own configuration with the `order` field. This field is defined as an ordered array of step names.
+### Ordering
 
-Caveats when using `order`:
-- `order` can only be used when `template` is used.
-- Steps that cannot be found will be skipped.
-- User-defined `teardown-` steps will always be run after the rest of the steps are done.
-- Implicit wrapping of steps(pre/post) will not work with this field.
-- The priority in determining duplicate step definitions goes like this: job > template
-- When the annotation `screwdriver.cd/mergeSharedSteps: true`, priority will be: job > shared > template
+When using a template, we can pick up both steps defined by the template and by our own configuration with the `order`
+field. This field is defined as an ordered array of step names. For example:
 
-Example `sd-template.yaml`:
+Let's say our template `sd-template.yaml` is:
+
 ```yaml
 namespace: nodejs
 name: publish
@@ -280,7 +309,8 @@ config:
     - coverage: coverage test.js
 ```
 
-Example `screwdriver.yaml`:
+And our pipeline `screwdriver.yaml` is:
+
 ```yaml
 jobs:
   main:
@@ -294,7 +324,8 @@ jobs:
       - coverage: ./ci/coverage.sh
 ```
 
-Result:
+Using the template in the pipeline results in the following effective final pipeline:
+
 ```yaml
 jobs:
   main:
@@ -308,40 +339,60 @@ jobs:
       - coverage: ./ci/coverage.sh  # This step was overwritten by the job
 ```
 
-## Creating a template
+#### Caveats
 
-Publishing and running templates must be done from a Screwdriver pipeline.
+- `order` can only be used when `template` is used.
+- Steps that cannot be found will be skipped.
+- User-defined `teardown-` steps will always be run after the rest of the steps are done.
+- Implicit wrapping of steps(pre/post) will not work with this field.
+- The priority in determining duplicate step definitions goes like this: job > template
+- When the annotation `screwdriver.cd/mergeSharedSteps: true`, priority will be: job > shared > template
 
-### Writing a template yaml
+Creating a Template
+-------------------
 
-To create a template, create a new repo with a `sd-template.yaml` file. The file should contain a namespace, name, version, description, maintainer email, and a config with an image and steps. If no namespace is specified, a 'default' namespace will be applied. An optional `images` keyword can be defined to list supported images with a descriptive label. Basic example can be found in our [screwdriver-cd-test/template-example repo](https://github.com/screwdriver-cd-test/template-example).
+### Writing a Template in YAML
 
-Example `sd-template.yaml`:
+To create a template, create a new repo with a `sd-template.yaml` file. The file should contain
+
+- a namespace
+- name
+- version
+- description
+- maintainer email, and
+- a config with an image and steps.
+
+If no namespace is specified, a `default` namespace will be applied. An optional `images` keyword can be defined to
+list supported images with a descriptive label. Basic example can be found in our
+[screwdriver-cd-test/template-example repo](https://github.com/screwdriver-cd-test/template-example).
+
+An example `sd-template.yaml` could be the following:
 
 ```yaml
 namespace: myNamespace
-name: template_name
+name: template-name
 version: '1.3'
 description: template for testing
 maintainer: foo@bar.com
 images:
-    stable-image: node:12
-    latest-image: node:14
+  stable-image: node:12
+  latest-image: node:14
 config:
-    image: stable-image
-    steps:
-        - install: npm install
-        - test: npm test
-    environment:
-        FOO: bar
-    secrets:
-        - NPM_TOKEN
+  image: stable-image
+  steps:
+    - install: npm install
+    - test: npm test
+  environment:
+    FOO: bar
+  secrets:
+    - NPM_TOKEN
 ```
 
 #### Template images
-We recommend using the `images` feature, which can be configured to list supported images with a descriptive label or alias.
 
-For example:
+We recommend using the `images` feature, which can be configured to list supported images with a descriptive label or
+alias. For example:
+
 ```yaml
 namespace: myNamespace
 name: template_name
@@ -349,61 +400,68 @@ version: '1.3'
 description: template for testing
 maintainer: foo@bar.com
 images:
-    stable-image: node:12
-    latest-image: node:8
+  stable-image: node:12
+  latest-image: node:8
 ```
 
 Users can pick an alias from the list and use it like so:
+
 ```yaml
 jobs:
-    main:
-        template: myNamespace/template_name@1.3.0
-        image: stable-image
+  main:
+    template: myNamespace/template_name@1.3.0
+    image: stable-image
 ```
 
 Example repo: <https://github.com/screwdriver-cd-test/template-images-example>
 
 #### Template Steps
-Avoid using any [wrapping](#using-a-template) prefixes (`pre` or `post`) in your step names, as it can lead to problems when users try to modify or enhance your steps. For example, if a template has these steps:
+
+Please avoid [wrapping](#using-a-template) prefixes (`pre` or `post`) in template step names, as it can lead to
+problems when users try to modify or enhance the steps. For example, if a template has these steps:
 
 ```yaml
 config:
-    image: node:12
-    steps:
-        - preinstall: echo Installing
-        - install: npm install
-        - test: npm test
+  image: node:12
+  steps:
+    - preinstall: echo Installing
+    - install: npm install
+    - test: npm test
 ```
 
-And a user consumes that template with some additional steps:
+When a user consumes that template with some additional steps:
+
 ```yaml
 jobs:
-    main:
-        template: myNamespace/template_name@1.3.0
-        steps:
-          - preinstall: echo foo
+  main:
+    template: myNamespace/template_name@1.3.0
+    steps:
+      - preinstall: echo foo
 ```
+
 It becomes unclear whether the user was trying to override `preinstall` or wrap `install`.
 
 #### Template Locked Steps
-You can specify steps that cannot be overwritten and must be included when using `order` by adding a `locked` key to your steps. It expects a boolean value (`true`/`false`; default is `false`).
-This flag applies to any template or job that uses this template. All templates using a template with a `locked` step will also have the same locked step.
+
+We can specify steps that cannot be overwritten and must be included when using `order` by adding a `locked` key to
+our steps. It expects a boolean value (`true`/`false`; default is `false`). This flag applies to any template or job
+that uses this template. All templates using a template with a `locked` step will also have the same locked step.
 
 ```yaml
 config:
-    image: node:12
-    steps:
-        - preinstall: echo Installing
-        - install: npm install
-        - test:
-            command: npm test
-            locked: true
+  image: node:12
+  steps:
+    - preinstall: echo Installing
+    - install: npm install
+    - test:
+      command: npm test
+      locked: true
 ```
 
-#### Template parameters
-You can define [parameters](./configuration/parameters) that can be used in the steps.  
+#### Template Parameters
 
-Example `sd-template.yaml`:
+We can define [parameters](./configuration/parameters) that can be used in the steps. For example:
+
 ```yaml
 namespace: myNamespace
 name: favorites
@@ -425,11 +483,11 @@ config:
         echo color = $(meta get parameters.color)
         echo sports = $(meta get parameters.sports)
 ```
+
 Example repo: <https://github.com/screwdriver-cd-test/template-parameters-example>
 
-These parameters are inherited by all the jobs using the template.
+These parameters are inherited by all the jobs using the template. For instance, having
 
-Example `screwdriver.yaml`:
 ```yaml
 jobs:
   # Inherits parameters "music", "color" and "sports" from the template.
@@ -441,7 +499,9 @@ jobs:
     requires: [main1]
     template: favorites/myNamespace@2
 ```
-is equivalent to 
+
+is equivalent to
+
 ```yaml
 jobs:
   main1:
@@ -474,7 +534,8 @@ jobs:
           echo sports = $(meta get parameters.sports)
 ```
 
-Users can override the parameter definition at `pipeline` scope or/and at `job` scope with `job` scope taking precedence over `pipeline scope`. 
+Users can override the parameter definition at `pipeline` scope or/and at `job` scope with `job` scope taking
+precedence over `pipeline scope`.
 
 Example `screwdriver.yaml`
 ```yaml
@@ -484,13 +545,13 @@ parameters:
 
 jobs:
   # Inherits parameters "color" and "sports" from the template.
-  # Since the parameter "music" from the template is overridden at the pipeline scope, it is not is not inherited at job scope.
+  # Since the parameter "music" from the template is overridden at the pipeline scope, it is not inherited at job scope.
   default_template_params:
     requires: [~pr, ~commit]
     template: favorites/myNamespace@2
 
   # Inherits parameter "sports" from the template.
-  # Since the parameter "music" from the template is overridden at the pipeline scope, it is not is not inherited at job scope.
+  # Since the parameter "music" from the template is overridden at the pipeline scope, it is not inherited at job scope.
   # Overrides the parameter "color" from the template.
   override_template_params:
     requires: default_template_params
@@ -502,21 +563,16 @@ jobs:
 Example repo: <https://github.com/screwdriver-cd-test/job-with-template-parameters-build-example>
 
 #### Caveats
-- Cannot do the following in a pull request: publish a template, create a tag, delete a tag or template
+
+- We cannot do the following in a pull request: publish a template, create a tag, delete a tag or template
 - A template can only be published by one pipeline
 
 ### Template Composition
-You can also use a template in the `config` section of an `sd-template.yaml` file.
 
-Caveats:
-- `order` can only be used when `template` is used.
-- Steps that cannot be found will be skipped.
-- User-defined `teardown-` steps will always be run after the rest of the steps are done.
-- Implicit wrapping of steps(pre/post) will not work with this field.
-- The priority in determining duplicate step definitions goes like this: current template > preexisting template
-- If you use a `template` in an `sd-template.yaml`, the `images` field will also be merged.
+We can also re-use a template in the `config` section of an `sd-template.yaml` file. For example
 
-Example preexisting `sd-template.yaml`:
+When we have a template of
+
 ```yaml
 namespace: nodejs
 name: publish
@@ -534,7 +590,8 @@ config:
     - coverage: coverage test.js
 ```
 
-Example `sd-template.yaml`:
+which is re-used in another template in the following way:
+
 ```yaml
 namespace: d2lam
 name: personal
@@ -553,7 +610,8 @@ config:
     - coverage: ./ci/coverage.sh
 ```
 
-Result:
+This gives us
+
 ```yaml
 namespace: d2lam
 name: personal
@@ -574,21 +632,80 @@ config:
     - coverage: ./ci/coverage.sh  # This step was overwritten by the d2lam/personal template
 ```
 
+#### Caveats
 
-### Writing a screwdriver yaml for your template repo
+- `order` can only be used when `template` is used.
+- Steps that cannot be found will be skipped.
+- User-defined `teardown-` steps will always be run after the rest of the steps are done.
+- Implicit wrapping of steps(pre/post) will not work with this field.
+- The priority in determining duplicate step definitions goes like this: current template > preexisting template
+- If you use a `template` in an `sd-template.yaml`, the `images` field will also be merged.
 
-#### Validating templates
+Publishing a Template
+---------------------
 
-To validate your template, run the `template-validate` script from the `screwdriver-template-main` npm module in your `main` job to validate your template. This means the build image must have NodeJS and NPM properly installed to use it. To publish your template, run the `template-publish` script from the same module in a separate job.
+_Please note that [we cannot create template from screwdriver API](#creating-template-using-screwdriver-api-fails)_. We
+have to create and publish using Screwdriver's official command line tool called
+**[screwdriver-template-main](https://github.com/QubitPi/screwdriver-cd-template-main)**.
 
-By default, the file at `./sd-template.yaml` will be read. However, a user can specify a custom path using the env variable: `SD_TEMPLATE_PATH`.
+Screwdriver also has a complete
+[example template repo](https://github.com/QubitPi/screwdriver-cd-template/blob/master/screwdriver.yaml). that shows
+how to use that tool in a regular Screwdriver pipeline. We will go through it in details below.
 
-You can also validate your `sd-template.yaml` and `screwdriver.yaml` through the UI by copy pasting it at `<YOUR_UI_URL>/validator`.
+### Writing a screwdriver.yaml File
 
-#### Tagging templates
-You can optionally tag a specific template version by running the `template-tag` script from the `screwdriver-template-main` npm package. This must be done by the same pipeline that your template is created by. You will need to provide arguments to the script: template name and tag. You can optionally specify a version; the version needs to be an exact version (see `tag` step). If the version is omitted, the most recent version will be tagged (see `autotag` step).
+Yes, we will have 2 YAML files in template repo
 
-To remove a template tag, run the `template-remove-tag` script. You will need to provide the template name and tag as arguments.
+1. sd-template.yaml, which defines template
+2. screwdriver.yaml, which publishes the template
+
+This section discusses what goes into the _screwdriver.yaml_. A minimum setup of screwdriver.yaml is the following:
+
+```yaml
+---
+shared:
+  image: node:18
+jobs:
+  main:
+    requires: [~pr, ~commit]
+    steps:
+      - install: npm install -g screwdriver-template-main
+      - validate: template-validate
+  publish:
+    requires: main
+    steps:
+      - install: npm install -g screwdriver-template-main
+      - publish: template-publish --tag latest
+```
+
+### Validating Template
+
+The `template-validate` above is validating the template using
+[`screwdriver-template-main` npm module](https://github.com/QubitPi/screwdriver-cd-template-main). Note the implication
+of that step; the image must have NodeJS and NPM properly installed to use it, which is why `node:18` build image is
+used.
+
+By default, the file at `./sd-template.yaml` will be read. However, we can specify a custom path using the env
+variable: `SD_TEMPLATE_PATH`.
+
+We can also validate both `sd-template.yaml` and `screwdriver.yaml` on UI by copy-pasting it at
+`<UI_URL>/validator`.
+
+### Publishing Template
+
+To publish the template, we run the `template-publish` script from the same module in a separate job. In the example,
+we also tag the tempate with "latest", which is discussed in more details in the [next section](#tagging-template)
+
+#### Tagging Template
+
+We can optionally tag a specific template version by running the `template-tag` script from the
+`screwdriver-template-main` npm package. This must be done by the same pipeline that our template is created by. We
+will need to provide arguments to the script: template name and tag. We can optionally specify a version; the version
+needs to be an exact version (see `tag` step). If the version is omitted, the most recent version will be tagged (see
+`autotag` step).
+
+To remove a template tag, run the `template-remove-tag` script. We will need to provide the template name and tag as
+arguments.
 
 Example `screwdriver.yaml`:
 
@@ -596,62 +713,92 @@ Example `screwdriver.yaml`:
 shared:
     image: node:12
 jobs:
-    main:
-        requires: [~pr, ~commit]
-        steps:
-            - install: npm install screwdriver-template-main
-            - validate: ./node_modules/.bin/template-validate
-        environment:
-            SD_TEMPLATE_PATH: ./path/to/template.yaml
-    publish:
-        requires: [main]
-        steps:
-            - install: npm install screwdriver-template-main
-            - publish: ./node_modules/.bin/template-publish
-            - autotag: ./node_modules/.bin/template-tag --name myNamespace/template_name --tag latest
-            - tag: ./node_modules/.bin/template-tag --name myNamespace/template_name --version 1.3.0 --tag stable
-        environment:
-            SD_TEMPLATE_PATH: ./path/to/template.yaml
-    remove:
-        steps:
-            - install: npm install screwdriver-template-main
-            - remove: ./node_modules/.bin/template-remove --name myNamespace/template_name
-    remove_tag:
-        steps:
-            - install: npm install screwdriver-template-main
-            - remove_tag: ./node_modules/.bin/template-remove-tag --name myNamespace/template_name --tag stable
+  main:
+    requires: [~pr, ~commit]
+    steps:
+      - install: npm install -g screwdriver-template-main
+      - validate: template-validate
+    environment:
+      SD_TEMPLATE_PATH: ./path/to/template.yaml
+  publish:
+    requires: [main]
+    steps:
+      - install: npm install -g screwdriver-template-main
+      - publish: template-publish
+      - autotag: template-tag --name myNamespace/template_name --tag latest
+      - tag: template-tag --name myNamespace/template_name --version 1.3.0 --tag stable
+    environment:
+      SD_TEMPLATE_PATH: ./path/to/template.yaml
+  remove:
+    steps:
+      - install: npm install -g screwdriver-template-main
+      - remove: template-remove --name myNamespace/template_name
+  remove_tag:
+    steps:
+      - install: npm install -g screwdriver-template-main
+      - remove_tag: template-remove-tag --name myNamespace/template_name --tag stable
 ```
+
+#### Running Pipeline
 
 Create a Screwdriver pipeline with your template repo and start the build to validate and publish it.
 
-To update a Screwdriver template, make changes in your SCM repository and rerun the pipeline build.
+### Updating Template
 
-## Testing a template
+To update a Screwdriver template, make changes in the template SCM repository and rerun the pipeline build.
 
-In order to test your template, set up a remote test for your template by creating another pipeline which uses your template, as seen in the [template-test-example](https://github.com/screwdriver-cd-test/template-test-example/blob/master/screwdriver.yaml). This example pipeline runs after the `publish_nodejs_template` is done by using the remote triggers feature.
-_Note: You cannot test your template in the same pipeline, as template step expansion is done at event creation time. Therefore, the pipeline would use an older version of your template if you try to use it in the pipeline where you create it._
+Testing a Template
+------------------
 
-## Using the build cache
+In order to test our template, set up a remote test for the template by creating another pipeline which uses our
+template, as seen in the
+[template-test-example](https://github.com/screwdriver-cd-test/template-test-example/blob/master/screwdriver.yaml).
+This example pipeline runs after the `publish_nodejs_template` is done by using the remote triggers feature.
 
-To use the [build cache feature](./configuration/build-cache), the [store-cli command](https://github.com/screwdriver-cd/store-cli) can be invoked in a step. For instance, if you are caching your `node_modules/` folder, you can specify a step before the `npm install` command that downloads the cache and another step afterwards that uploads the cache. You can also move the uploading cache step to a teardown with the `teardown-` prefix.
+_Note: We cannot test your template in the same pipeline, as template step expansion is done at event creation time.
+Therefore, the pipeline would use an older version of your template if you try to use it in the pipeline where you
+create it._
+
+Using the Build Cache
+---------------------
+
+To use the [build cache feature](./configuration/build-cache), the
+[store-cli command](https://github.com/screwdriver-cd/store-cli) can be invoked in a step. For instance, if we are
+caching our `node_modules/` folder, we can specify a step before the `npm install` command that downloads the cache
+and another step afterwards that uploads the cache. You can also move the uploading cache step to a teardown with the
+`teardown-` prefix.
 
 ```yaml
 config:
-    image: node:8
-    steps:
-        - getcache: store-cli get node_modules/ --type=cache --scope=event || echo "Failed to fetch Cache"
-        - install: npm install
-        - teardown-putcache: store-cli set node_modules/ --type=cache --scope=event || echo "Failed to publish Cache"
+  image: node:8
+  steps:
+    - getcache: store-cli get node_modules/ --type=cache --scope=event || echo "Failed to fetch Cache"
+    - install: npm install
+    - teardown-putcache: store-cli set node_modules/ --type=cache --scope=event || echo "Failed to publish Cache"
 ```
 
-## Removing a template
+Removing A Template
+-------------------
 
-### Using screwdriver-template-main npm package
-To remove your template, you can run the `template-remove` script. You will need to provide the template name as an argument.
+### Using screwdriver-template-main npm Package
 
-### Using the UI
-Or, you can remove your template and all its associated tags and versions by clicking on the trash icon in the UI on the template page.
+To remove a template, we can run the `template-remove` script. We will need to provide the template name as an argument.
 
-_Note: Do not delete your template pipeline beforehand, because it is required to determine who has permission to delete the template._
+### Through UI
+
+Or, we can remove a template and all its associated tags and versions by clicking on the trash icon in the UI on the
+template page.
+
+_Note: Do NOT delete its template pipeline beforehand, because it is required to determine who has permission to delete
+the template._
 
 ![Removing](assets/delete-template.png)
+
+Troubleshooting
+---------------
+
+### Creating Template Using Screwdriver API Fails
+
+![Removing](assets/creating-template-via-api-failed.png)
+
+Publishing and running templates must be done [from a Screwdriver pipeline](#publishing-a-template).
