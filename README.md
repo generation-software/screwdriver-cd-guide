@@ -1,17 +1,21 @@
-# Screwdriver Guide
+Screwdriver Documentation
+=========================
 
 [![GitHub Workflow Status][GitHub Workflow Status badge]][GitHub Workflow Status URL]
 ![Last Commit][GitHub Commit badge]
 
 > Documentation for the Screwdriver CD service
 
-Screwdriver is a self-contained, pluggable service to help you build, test, and continuously deliver software using the latest containerization technologies.
+Screwdriver is a self-contained, pluggable service to help you build, test, and continuously deliver software using the 
+latest containerization technologies.
 
-## To start using Screwdriver
+To start using Screwdriver
+--------------------------
 
 For more information about Screwdriver, check out our [homepage](https://screwdriver.cd).
 
-## To start contributing to Screwdriver
+To start contributing to Screwdriver
+------------------------------------
 
 Have a look at our guidelines, as well as pointers on where to start making changes, in our [contributing guide](http://docs.screwdriver.cd/about/contributing).
 
@@ -20,15 +24,19 @@ The guide is powered by Jekyll. There are two ways to run Jekyll: via Docker and
 ### Running Jekyll using Docker
 
 1. Install [docker-desktop](https://www.docker.com/products/docker-desktop) if you haven't already.
-1. Ensure Docker is running with `docker info`; if not, then on Mac, you can launch easily using `open -a /Applications/Docker.app/`. Launching on CLI (rather than double-clicking) has advantage of exporting your `$SSH_AUTH_SOCK` and `ssh-agent` will work properly, should you need it at some point.
-1. Run the Jekyll Docker image with mount of `$PWD` to its serving location and with `-ti` so `^C` will kill it.
+2. Ensure Docker is running with `docker info`; if not, then on Mac, you can launch easily using `open -a 
+   /Applications/Docker.app/`. Launching on CLI (rather than double-clicking) has advantage of exporting your 
+   `$SSH_AUTH_SOCK` and `ssh-agent` will work properly, should you need it at some point.
+3. Run the Jekyll Docker image with mount of `$PWD` to its serving location and with `-ti` so `^C` will kill it.
+
    ```bash
    docker run -v $PWD:/srv/jekyll:rw -p 4080:4000 -it jekyll/jekyll jekyll serve --source docs --destination _site
    ```
 
 ### Running Jekyll by installing
 
-In order to install Jekyll you'll need Ruby, the Ruby package manager (RubyGems), and bundle to install and run Jekyll. You can check if you have these already installed like so:
+In order to install Jekyll you'll need Ruby, the Ruby package manager (RubyGems), and bundle to install and run Jekyll.
+You can check if you have these already installed like so:
 
 ```bash
 $ ruby --version
@@ -41,7 +49,8 @@ Bundler version 1.15.1
 
 Jekyll supports Ruby version 2.1 or above.
 
-You can also build and serve the documentation using Docker (see below). If you choose this approach, there is no need to install Ruby/bundle/jekyll.
+You can also build and serve the documentation using Docker (see below). If you choose this approach, there is no need 
+to install Ruby/bundle/jekyll.
 
 ### Standard
 
@@ -60,15 +69,20 @@ $ bundle exec jekyll --version
 jekyll 3.8.4
 ```
 
-## Viewing docs locally
+Viewing Docs Locally
+--------------------
 
-There's a single configuration file named `_config.yml`, and a folder named `docs` that will contain our documentation source files.
+There's a single configuration file named `_config.yml`, and a folder named `docs` that will contain our documentation 
+source files.
 
-Jekyll comes with a built-in webserver that lets you preview your documentation as you work on it. You can start the webserver locally with Jekyll directly.
+Jekyll comes with a built-in webserver that lets you preview your documentation as you work on it. You can start the 
+webserver locally with Jekyll directly.
 
 ### Standard
 
-Jekyll comes with a built-in webserver that lets you preview your documentation as you work on it. We start the webserver by making sure we're in the same directory as the `docs` folder, and then running the `bundle exec jekyll serve --source docs --destination _site` command:
+Jekyll comes with a built-in webserver that lets you preview your documentation as you work on it. We start the 
+webserver by making sure we're in the same directory as the `docs` folder, and then running the
+`bundle exec jekyll serve --source docs --destination _site` command:
 
 ```bash
 $ bundle exec jekyll serve --source docs --destination _site
@@ -113,52 +127,32 @@ docker run --rm \
 
 ### Browse your local guide
 
-Once you successfully start the webserver, open up [http://127.0.0.1:4000/](http://127.0.0.1:4000/) in your browser. You'll be able to see the index page being displayed.
+Once you successfully start the webserver, open up [http://127.0.0.1:4000/](http://127.0.0.1:4000/) in your browser. 
+You'll be able to see the index page being displayed.
+
 And you'll also be able to see the other language index page open up http://127.0.0.1:4000/:lang/ in your browser.
-For example, open up [http://127.0.0.1:4000/ja/](http://127.0.0.1:4000/ja/) in your browser, you'll be able to see the Japanese index page being displayed.
+For example, open up [http://127.0.0.1:4000/ja/](http://127.0.0.1:4000/ja/) in your browser, you'll be able to see the 
+Japanese index page being displayed.
 
-## Adding docs
+Adding Docs
+-----------
 
-Simply add a new markdown document to the folder hierarchy in `docs`, and add an entry to the tree in `docs/_data/menu.yaml`
+Simply add a new markdown document to the folder hierarchy in `docs`, and add an entry to the tree in
+`docs/_data/menu.yaml`
 
-## Documentation Structure
+### Troubleshooting
 
-- Homepage
-  - [x] What are the sections for
-- Cluster Management (for SD owners)
-  - [x] Overall architecture
-  - [x] Configuring API
-    - [x] Scm plugins
-    - [x] Datastore plugins
-  - [x] Configuring UI
-  - [x] Configuring Store
-    - [x] Logging plugins
-  - [x] Configuring Queue Service
-  - [x] Running locally
-  - [x] Configure Build
-  - Examples
-    - [x] Setting up Kubernetes
-  - [ ] Debugging
-- User Guide
-  - [x] Quickstart
-  - [x] API
-  - [x] Authentication and Authorization
-  - [x] Configuration
-    - [x] Overall YAML
-    - [x] Metadata
-    - [x] Secrets
-  - [x] Templates
-  - [x] FAQ
-- [x] Contributing
-  - [x] Overview
-  - [x] Development
-  - [x] Where to Contribute?
-- About
-  - [x] What is SD?
-  - [x] Appendix
-    - [x] Domain model
-    - [x] Execution engines
-  - [x] Support
+### Adding a New Jekyll Page Shows Up with No CSS
+
+[Jekyll is dying and has bad reputation of not taking users seriously](https://github.com/jekyll/jekyll/issues/5257),
+its build script exit with 0 with errors. This stupid behavior gives us the illusion that "build passes but our site
+is not working as expected" such as missing CSS like this page:
+
+![Error loading bad-jekyll.png](./bad-jekyll.png)
+
+Please check GitHub Action build log and we will see there was actually error:
+
+![Error loading build-error.png](./build-error.png)
 
 [GitHub Workflow Status badge]: https://img.shields.io/github/actions/workflow/status/QubitPi/screwdriver-cd-guide/ci-cd.yml?branch=master&logo=github&style=for-the-badge
 [GitHub Workflow Status URL]: https://github.com/QubitPi/screwdriver-cd-guide/actions/workflows/ci-cd.yml
