@@ -7,7 +7,7 @@ toc:
     - title: Troubleshooting
       url: "#troubleshooting"
       active: true
-    - title: "git clone" Step Fails
+    - title: git clone Step Fails
       url: "#git-clone-step-fails"
 ---
 
@@ -17,7 +17,7 @@ Troubleshooting
 "git clone" Step Fails
 ----------------------
 
-```bash
+```console
 error: xxxx bytes of body are still expected
 fetch-pack: unexpected disconnect while reading sideband packet
 fatal: early EOF
