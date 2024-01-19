@@ -60,6 +60,8 @@
       url: "/screwdriver-cd-guide/user-guide/local"
     - title: "FAQ"
       url: "/screwdriver-cd-guide/user-guide/FAQ"
+    - title: "Troubleshooting"
+      url: "/screwdriver-cd-guide/user-guide/troubleshooting"
 - title: "Cluster Management"
   subcategories:
     - title: "Overall Architecture"
