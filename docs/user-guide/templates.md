@@ -512,9 +512,9 @@ config:
       value: [ "baseball", "basketball" ]
   steps:
     - step_print_template_parameters: |
-        echo music = $(meta get parameters.music)
-        echo color = $(meta get parameters.color)
-        echo sports = $(meta get parameters.sports)
+        echo music = $(meta get parameters.music.value)
+        echo color = $(meta get parameters.color.value)
+        echo sports = $(meta get parameters.sports.value)
 ```
 
 Example repo: <https://github.com/screwdriver-cd-test/template-parameters-example>
@@ -548,9 +548,9 @@ jobs:
         value: [ "baseball", "basketball" ]
     steps:
       - step_print_template_parameters: |
-          echo music = $(meta get parameters.music)
-          echo color = $(meta get parameters.color)
-          echo sports = $(meta get parameters.sports)
+          echo music = $(meta get parameters.music.value)
+          echo color = $(meta get parameters.color.value)
+          echo sports = $(meta get parameters.sports.value)
   main2:
     requires: [main1]
     parameters:
@@ -562,9 +562,9 @@ jobs:
         value: [ "baseball", "basketball" ]
     steps:
       - step_print_template_parameters: |
-          echo music = $(meta get parameters.music)
-          echo color = $(meta get parameters.color)
-          echo sports = $(meta get parameters.sports)
+          echo music = $(meta get parameters.music.value)
+          echo color = $(meta get parameters.color.value)
+          echo sports = $(meta get parameters.sports.value)
 ```
 
 Users can override the parameter definition at `pipeline` scope or/and at `job` scope with `job` scope taking
