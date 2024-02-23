@@ -9,8 +9,11 @@ name: Guide CI/CD
       - master
 
 jobs:
-  ci-cd:
+  documentation:
     name: Tests documentation build
+    outputs:
+      outcome: ${{ job.status }}
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,3 +25,13 @@ jobs:
           bundle install
           bundle exec jekyll build
         working-directory: docs
+
+  slack-notification:
+    name: Send Slack Notification
+    if: ${{ always() }}
+    needs: documentation
+    uses: QubitPi/hashicorp-aws/.github/workflows/slack-notification.yml@master
+    with:
+      job-status: ${{ needs.documentation.outputs.outcome }}
+    secrets:
+      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
