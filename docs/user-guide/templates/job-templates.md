@@ -113,7 +113,7 @@ also browse templates in the UI at `<YOUR_UI_URL>/templates`.
 
 Example templates page:
 
-![Templates](assets/templates.png)
+![Templates](../assets/templates.png)
 
 Using a Template
 ----------------
@@ -825,13 +825,13 @@ template page.
 _Note: Do NOT delete its template pipeline beforehand, because it is required to determine who has permission to delete
 the template._
 
-![Removing](assets/delete-template.png)
+![Removing](../assets/delete-template.png)
 
 Troubleshooting
 ---------------
 
 ### Creating Template Using Screwdriver API Fails
 
-![Removing](assets/creating-template-via-api-failed.png)
+![Removing](../assets/creating-template-via-api-failed.png)
 
 Publishing and running templates must be done [from a Screwdriver pipeline](#publishing-a-template).
