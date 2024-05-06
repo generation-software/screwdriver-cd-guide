@@ -7,20 +7,74 @@ toc:
     - title: SD-in-a-Box
       url: "#sd-in-a-box"
       active: true
-    - title: Configuring SD-in-a-Box
-      url: "#configuring-sd-in-a-box"
+    - title: Configuring SD-in-a-Box with a Custom Domain
+      url: "#configuring-sd-in-a-box-with-a-custom-domain"
+    - title: Configuring SD-in-a-Box Manually
+      url: "#configuring-sd-in-a-box-manually"
 ---
-## SD-in-a-Box
-You can run Screwdriver locally by using our Screwdriver-in-a-box tool. This handy feature will bring up an entire Screwdriver instance (UI, API, and log store) locally for you to play with.
 
-Follow instructions in the [SD-in-a-box docs](https://github.com/screwdriver-cd/in-a-box#screwdriver-in-a-box).
+## SD-in-a-Box
+
+We can run Screwdriver locally by using our Screwdriver-in-a-box tool. This handy feature will bring up an entire 
+Screwdriver instance (UI, API, and log store) locally for you to play with.
+
+Follow instructions in the [SD-in-a-box Quickstart].
 
 ![SD-in-a-box](./assets/sd-in-a-box.png)
 
-[docker]: https://www.docker.com/products/docker
-[docker-compose]: https://www.docker.com/products/docker-compose
+## Configuring SD-in-a-Box with a Custom Domain
 
-## Configuring SD-in-a-Box
+Suppose we would like to deploy SD-in-a-Box to a server with a SSL-enabled domain called
+`https://screwdriver.mycompany.com`, what we will need to do is the following:
+
+1. Complete the [SD-in-a-box Quickstart] to get a working `docker-compose.yml` file along with its
+   [local.yaml](https://github.com/QubitPi/screwdriver-cd-in-a-box/blob/master/local.yaml) unchanged
+2. Modify the `docker-compose.yml`:
+
+   - Replace all `http://${auto-generated-private-ip}:9000` with `https://screwdriver.mycompany.com`
+   - Replace all `http://${auto-generated-private-ip}:9001` with `https://screwdriver.mycompany.com:9101`
+   - Replace all `http://${auto-generated-private-ip}:9001` with `https://screwdriver.mycompany.com:9102`
+   - Add a new config of `OAUTH_REDIRECT_URI: https://screwdriver.mycompany.com:9101` to the `api` service environment 
+     variable list. This is because Screwdriver, in this case, computes redirect URL as non-9101 port URL of 
+     `https://screwdriver.mycompany.com:9001`, which will cause
+     ["Redirect URI mismatch" OAuth error during sign-in phase later](https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-authorization-request-errors#redirect-uri-mismatch)
+   - In the `api` service environment variable list as well, set `AUTH_CHECK_BY_ID: "true"`, `SECRET_SD_ADMINS`, and
+    `SECRET_ALLOW_LIST` as the following:
+
+     ```yaml
+     AUTH_CHECK_BY_ID: "true"
+     SECRET_SD_ADMINS: |
+       [
+         "github:adminGitHubUserName:adminGitHubUserId"
+       ]
+     SECRET_ALLOW_LIST: |
+       [
+         "github:adminGitHubUserName:adminGitHubUserId",
+         "github:orgMember1GitHubUserName:orgMember1GitHubUserId",
+         "github:orgMember2GitHubUserName:orgMember2GitHubUserId",
+         ...
+       ]
+     ```
+
+     where `*GitHubUserId` can be [obtained using GitHub API](https://stackoverflow.com/a/17309026). These 3 configs
+     makes sure that only the specified user can sign-in to see all dashboard pipelines
+
+     More infor about these 3 configs can be found at
+     [Authentication/Authorization docs](https://screwdriver-docs.qubitpi.org/cluster-management/configure-api#authentication--authorization)
+
+3. [Set up the SSL certificate](https://hashicorp-aws.com/docs/setup#installing-free-ssl-certificates-with-certbot-running-on-nginx)
+   on the server with the following Nginx reverse proxy configs:
+
+   - Port forwarding 443 to `localhost:9000`
+   - Port forwarding 9101 to `localhost:9001`
+   - Port forwarding 9102 to `localhost:9002`
+
+   Note that our HTTP**S** ports are 443/9101/9202. We don't have Nginx listen on 9001 or 9002 because Nginx cannot
+   occupy 9001 and 9002 due to the two already been taken by Screwdriver
+
+## Configuring SD-in-a-Box Manually
+
+_Note: This section does not need to be followed if the two secions above are donw._
 
 SD-in-a-box was intended to be an easy way to run a Screwdriver cluster locally on your development machine so you can demo its features first-hand.
 
@@ -193,3 +247,5 @@ services:
       ECOSYSTEM_STORE: http://10.73.202.183:8888    # Tells the API where the store is hosted
     . . .
 ```
+
+[SD-in-a-box Quickstart]: https://github.com/QubitPi/screwdriver-cd-in-a-box?tab=readme-ov-file#quickstart
