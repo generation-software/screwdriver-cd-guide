@@ -71,10 +71,13 @@ Suppose we would like to deploy SD-in-a-Box to a server with a SSL-enabled domai
 
    Note that our HTTP**S** ports are 443/9101/9202. We don't have Nginx listen on 9001 or 9002 because Nginx cannot
    occupy 9001 and 9002 due to the two already been taken by Screwdriver
+4. The GitHub OAuth app should have configuration that looks like
+
+   ![GH-OAuth](./assets/gh-oauth-app.png)
 
 ## Configuring SD-in-a-Box Manually
 
-_Note: This section does not need to be followed if the two secions above are donw._
+_Note: This section does not need to be followed if the two sections above are done._
 
 SD-in-a-box was intended to be an easy way to run a Screwdriver cluster locally on your development machine so you can demo its features first-hand.
 
