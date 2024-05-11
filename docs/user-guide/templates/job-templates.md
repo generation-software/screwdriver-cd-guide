@@ -567,7 +567,47 @@ jobs:
           echo sports = $(meta get parameters.sports.value)
 ```
 
-Users can override the parameter definition at `pipeline` scope or/and at `job` scope with `job` scope taking
+One drawback of the approach above is that we need to re-specify all parameters every time when we run the job
+inheriting the template. If the job has fixed parameter values all the time, we can give default template parameter 
+values by
+
+```yaml
+jobs:
+  main:
+    requires: [~commit]
+    template: my-namespace/my-template@latest
+    parameters:
+      my-param:
+        value: "value2"
+```
+
+assuming our template looks like this:
+
+```yaml
+---
+namespace: my-namespace
+name: my-template
+version: '1.0.0'
+description: An example template with 2 inherited parameters
+maintainer: jack20220723@gmail.com
+config:
+  image: buildpack-deps:22.04-scm
+  parameters:
+    my-param:
+      value: ["value1", "value2", "value3"]
+      description: "a value that will be overridden"
+    my-another-param:
+      value: "some-value"
+      description: "a value that will be inherited"
+  steps:
+    - install-jdk: ...
+    ...
+```
+
+When a `~commit` triggers the job, it will automatically pick up `value2` for `my-param` and `some-value` for 
+`my-another-param` as default values
+
+We can also override the parameter definition at `pipeline` scope or/and at `job` scope with `job` scope taking
 precedence over `pipeline scope`.
 
 Example `screwdriver.yaml`
