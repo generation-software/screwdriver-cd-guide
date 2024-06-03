@@ -71,3 +71,25 @@ Pipeline-level annotations are used to modify the properties of the entire pipel
  | screwdriver.cd/chainPR    | `false` / `true` | Default value is `false`. When value is `false` a Pull Request will run only those jobs which has `~pr` in `requires`. When `true`, a Pull Request will run jobs which have `~pr` in requires and also trigger their downstream jobs. Example repo: <https://github.com/screwdriver-cd-test/chain-pr-example> |
  | screwdriver.cd/pipelineDescription | A pipeline description string | This will display a pipeline description on the pipeline page |
 |screwdriver.cd/useDeployKey | `false` / `true` | Default value is `false`. It must be set to `true` for `git checkout` when running Screwdriver builds in user AWS accounts|
+
+For example, [to enable `chainPR`, place the annotation at the top of the screwdriver.yaml file like this:](https://github.com/screwdriver-cd/screwdriver/issues/2581)
+
+```yaml
+annotations:
+  screwdriver.cd/chainPR: true
+shared:
+  image: <img>
+jobs:
+  job1:
+    requires: [ ~pr ]
+    steps:
+    ....
+  job2:
+    requires: [ ~pr ]
+    steps:
+    ...
+  job3:
+   requires: [ job1, job2]
+   steps:
+    ....
+```
