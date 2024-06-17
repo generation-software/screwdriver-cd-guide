@@ -210,7 +210,7 @@ Setting up Executor Queue and Queue Service
 -------------------------------------------
 
 Instead of using single Docker executor, we can use the Redis queue to enable Screwdriver to run more sophisticated
-[workflows](https://qubitpi.github.io/screwdriver-cd-guide/user-guide/configuration/workflow) such as:
+[workflows](https://screwdriver-docs.qubitpi.org/user-guide/configuration/workflow) such as:
 `build_periodically ` and `freezeWindow`.
 
 ### Installing Redis
