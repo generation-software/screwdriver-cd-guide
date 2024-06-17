@@ -39,7 +39,7 @@ exclude:
   - deploy.sh
 
 site_name: Screwdriver Guide
-site_url: https://qubitpi.github.io/screwdriver-cd-guide
+site_url: https://screwdriver-docs.qubitpi.org/
 repo_url: https://github.com/QubitPi/screwdriver-cd-guide
 repo_name: screwdriver-cd-guide
 site_description: All you need to know about Screwdriver and more

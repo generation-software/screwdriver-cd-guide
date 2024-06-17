@@ -60,7 +60,7 @@ Patches for fixes, features, and improvements are accepted through pull requests
 _Please ask before embarking on a large improvement so you're not disappointed if it does not align with the goals of
 the project or owner(s)._
 
-[documentation]: https://qubitpi.github.io/screwdriver-cd-guide/
+[documentation]: https://screwdriver-docs.qubitpi.org/
 
 [guide-repo]: https://github.com/screwdriver-cd/guide
 
