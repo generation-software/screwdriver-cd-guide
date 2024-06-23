@@ -272,7 +272,7 @@ acceptance tests for [Screwdriver.cd](https://cd.screwdriver.cd).
 [gitversion-repo]: https://github.com/QubitPi/screwdriver-cd-gitversion
 [guide-repo]: https://github.com/QubitPi/screwdriver-cd-guide
 [homepage-repo]: https://github.com/QubitPi/screwdriver-cd-homepage
-[homepage]: https://screwdriver.cd
+[homepage]: https://screwdriver-docs.qubitpi.org
 [hyperctl-image-repo]: https://github.com/QubitPi/screwdriver-cd-hyperctl-image
 [in-a-box-repo]: https://github.com/QubitPi/screwdriver-cd-in-a-box
 [junit-reports-repo]: https://github.com/QubitPi/screwdriver-cd-junit-reports
