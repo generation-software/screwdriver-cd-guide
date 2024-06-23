@@ -1,79 +1,141 @@
 ---
 layout: main
-title: Running Screwdriver Locally using SD-in-a-Box
+title: Running Screwdriver in Docker Compose
 category: Cluster Management
 menu: menu
 toc:
-    - title: SD-in-a-Box
-      url: "#sd-in-a-box"
+    - title: Docker Compose
+      url: "#docker-compose"
       active: true
-    - title: Configuring SD-in-a-Box with a Custom Domain
-      url: "#configuring-sd-in-a-box-with-a-custom-domain"
+    - title: Running Docker Compose in AWS EC2 (Production Deployment)
+      url: "#running-docker-compose-in-aws-ec2-production-deployment"
     - title: Configuring SD-in-a-Box Manually
       url: "#configuring-sd-in-a-box-manually"
 ---
 
-## SD-in-a-Box
+## Docker Compose
 
-We can run Screwdriver locally by using our Screwdriver-in-a-box tool. This handy feature will bring up an entire 
-Screwdriver instance (UI, API, and log store) locally for you to play with.
+We can run Screwdriver locally via Docker Compose. This handy feature will bring up an entire Screwdriver instance (UI,
+API, and log store) locally for you to play with.
 
-Follow instructions in the [SD-in-a-box Quickstart].
+Follow instructions in the [Docker Compose Quickstart].
 
-![SD-in-a-box](./assets/sd-in-a-box.png)
+![Error loading docker-compose.png](./assets/docker-compose.png)
 
-## Configuring SD-in-a-Box with a Custom Domain
+## Running Docker Compose in AWS EC2 (Production Deployment)
 
-Suppose we would like to deploy SD-in-a-Box to a server with a SSL-enabled domain called
+We can extend our [local Screwdriver](#docker-compose) to support running it in production using Docker Compose, too.
+Let's assume we would like to deploy Screwdriver to a server with a SSL-enabled domain called
 `https://screwdriver.mycompany.com`, what we will need to do is the following:
 
-1. Complete the [SD-in-a-box Quickstart] to get a working `docker-compose.yml` file along with its
-   [local.yaml](https://github.com/QubitPi/screwdriver-cd-in-a-box/blob/master/local.yaml) unchanged
-2. Modify the `docker-compose.yml`:
+1. Spin up an EC2 with size at least __large__
+2. SSH into the EC2 to [Install Docker](https://github.com/QubitPi/docker-install) and
+   [set up Nginx and SSL](https://hashicorp-aws.com/docs/setup#optional-setup-ssl)
+3. Complete the [Docker Compose Quickstart] to get a working `docker-compose.yml` file along with its
+   [local.yaml](https://github.com/QubitPi/screwdriver-cd-local/blob/master/local.yaml) unchanged
 
-   - Replace all `http://${auto-generated-private-ip}:9000` with `https://screwdriver.mycompany.com`
-   - Replace all `http://${auto-generated-private-ip}:9001` with `https://screwdriver.mycompany.com:9101`
-   - Replace all `http://${auto-generated-private-ip}:9001` with `https://screwdriver.mycompany.com:9102`
-   - Add a new config of `OAUTH_REDIRECT_URI: https://screwdriver.mycompany.com:9101` to the `api` service environment 
-     variable list. This is because Screwdriver, in this case, computes redirect URL as non-9101 port URL of 
-     `https://screwdriver.mycompany.com:9001`, which will cause
-     ["Redirect URI mismatch" OAuth error during sign-in phase later](https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-authorization-request-errors#redirect-uri-mismatch)
-   - In the `api` service environment variable list as well, set `AUTH_CHECK_BY_ID: "true"`, `SECRET_SD_ADMINS`, and
-    `SECRET_ALLOW_LIST` as the following:
+Next, let's configure the domain `https://screwdriver.mycompany.com`, which is discussed in the following section:
 
-     ```yaml
-     AUTH_CHECK_BY_ID: "true"
-     SECRET_SD_ADMINS: |
-       [
-         "github:adminGitHubUserName:adminGitHubUserId"
-       ]
-     SECRET_ALLOW_LIST: |
-       [
-         "github:adminGitHubUserName:adminGitHubUserId",
-         "github:orgMember1GitHubUserName:orgMember1GitHubUserId",
-         "github:orgMember2GitHubUserName:orgMember2GitHubUserId",
-         ...
-       ]
-     ```
+### Configuring Screwdriver with a Custom Domain
 
-     where `*GitHubUserId` can be [obtained using GitHub API](https://stackoverflow.com/a/17309026). These 3 configs
-     makes sure that only the specified user can sign-in to see all dashboard pipelines
+Modify the `docker-compose.yml`:
 
-     More infor about these 3 configs can be found at
-     [Authentication/Authorization docs](https://screwdriver-docs.qubitpi.org/cluster-management/configure-api#authentication--authorization)
+- Replace all `http://${auto-generated-private-ip}:9000` with `https://screwdriver.mycompany.com`, where
+  `${auto-generated-private-ip}` is the private IP address of the EC2 instance
+- Replace all `http://${auto-generated-private-ip}:9001` with `https://screwdriver.mycompany.com:9101`
+- Replace all `http://${auto-generated-private-ip}:9001` with `https://screwdriver.mycompany.com:9102`
+- Add a new config of `OAUTH_REDIRECT_URI: https://screwdriver.mycompany.com:9101` to the `environment` section of the
+  `api` service. For example:
 
-3. [Set up the SSL certificate](https://hashicorp-aws.com/docs/setup#installing-free-ssl-certificates-with-certbot-running-on-nginx)
-   on the server with the following Nginx reverse proxy configs:
+  ```yaml
+  version: '2'
+  services:
+    api:
+      ...
+      environment:
+        PORT: 80
+        URI: https://screwdriver.mycompany.com:9101
+        ECOSYSTEM_UI: https://screwdriver.mycompany.com
+        ECOSYSTEM_STORE: https://screwdriver.mycompany.com:9102
+        OAUTH_REDIRECT_URI: https://screwdriver.mycompany.com:9101
+  ```
 
-   - Port forwarding 443 to `localhost:9000`
-   - Port forwarding 9101 to `localhost:9001`
-   - Port forwarding 9102 to `localhost:9002`
+  This is because Screwdriver, in this case, computes redirect URL as non-9101 port URL of
+  `https://screwdriver.mycompany.com:9001`, which will cause
+  ["Redirect URI mismatch" OAuth error during sign-in phase later](https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-authorization-request-errors#redirect-uri-mismatch)
 
-   Note that our HTTP**S** ports are 443/9101/9202. We don't have Nginx listen on 9001 or 9002 because Nginx cannot
-   occupy 9001 and 9002 due to the two already been taken by Screwdriver
-4. The GitHub OAuth app should have configuration that looks like
+- In the `api` service environment variable list as well, set `AUTH_CHECK_BY_ID: "true"`, `SECRET_SD_ADMINS`, and
+  `SECRET_ALLOW_LIST` as the following:
 
-   ![GH-OAuth](./assets/gh-oauth-app.png)
+  ```yaml
+  AUTH_CHECK_BY_ID: "true"
+  SECRET_SD_ADMINS: |
+    [
+      "github:adminGitHubUserName:adminGitHubUserId"
+    ]
+  SECRET_ALLOW_LIST: |
+    [
+      "github:adminGitHubUserName:adminGitHubUserId",
+      "github:orgMember1GitHubUserName:orgMember1GitHubUserId",
+      "github:orgMember2GitHubUserName:orgMember2GitHubUserId",
+      ...
+    ]
+  ```
+
+  where `*GitHubUserId` can be [obtained using GitHub API](https://stackoverflow.com/a/17309026). These 3 configs makes
+  sure that only the specified user can sign-in to see all dashboard pipelines
+
+  More infor about these 3 configs can be found at
+  [Authentication/Authorization docs](https://screwdriver-docs.qubitpi.org/cluster-management/configure-api#authentication--authorization)
+
+[Set up the SSL certificate](https://hashicorp-aws.com/docs/setup#installing-free-ssl-certificates-with-certbot-running-on-nginx)
+on the server with the following Nginx reverse proxy configs:
+
+  - Port forwarding 443 to `localhost:9000`
+  - Port forwarding 9101 to `localhost:9001`
+  - Port forwarding 9102 to `localhost:9002`
+
+Note that our HTTP**S** ports are 443/9101/9202. We don't have Nginx listen on 9001 or 9002 because Nginx cannot
+occupy 9001 and 9002 due to the two already been taken by Screwdriver
+
+The GitHub OAuth app should have configuration that looks like
+
+![GH-OAuth](./assets/gh-oauth-app.png)
+
+### Spin Up Screwdriver
+
+Pull the required runtime images first:
+
+```console
+docker pull screwdrivercd/launcher
+```
+
+Then start Screwdriver with:
+
+```console
+nohup docker compose -p screwdriver up &
+```
+
+### Managing Screwdriver Instance
+
+#### Periodically Deleting Dangling Docker objects [using cron](https://askubuntu.com/a/2369)
+
+The Docker Compose doesn't handle the cleanup finished executor containers. If a Screwdriver pipeline run finishes and 
+its executor container is left there, EC2 will quickly run out of disk space. To deal with this potential problem, we
+can have a script like:
+
+```bash
+#!/bin/bash
+
+while true; do
+  docker container prune -f
+  docker volume prune -f
+  sleep 30
+done
+```
+
+This script can run by `nohup ./cleanup.sh &`. Note that this script example cleans up all dangling containers every
+_30_ seconds
 
 ## Configuring SD-in-a-Box Manually
 
@@ -251,4 +313,4 @@ services:
     . . .
 ```
 
-[SD-in-a-box Quickstart]: https://github.com/QubitPi/screwdriver-cd-in-a-box?tab=readme-ov-file#quickstart
+[Docker Compose Quickstart]: https://github.com/QubitPi/screwdriver-cd-local

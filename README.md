@@ -130,10 +130,6 @@ docker run --rm \
 Once you successfully start the webserver, open up [http://127.0.0.1:4000/](http://127.0.0.1:4000/) in your browser. 
 You'll be able to see the index page being displayed.
 
-And you'll also be able to see the other language index page open up http://127.0.0.1:4000/:lang/ in your browser.
-For example, open up [http://127.0.0.1:4000/ja/](http://127.0.0.1:4000/ja/) in your browser, you'll be able to see the 
-Japanese index page being displayed.
-
 Adding Docs
 -----------
 
