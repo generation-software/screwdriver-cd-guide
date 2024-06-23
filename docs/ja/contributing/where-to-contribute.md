@@ -235,7 +235,7 @@ Screwdriver のリポジトリを新しく作成する際の手助けとなる�
 [gitversion-repo]: https://github.com/screwdriver-cd/gitversion
 [guide-repo]: https://github.com/screwdriver-cd/guide
 [homepage-repo]: https://github.com/screwdriver-cd/homepage
-[homepage]: https://screwdriver.cd
+[homepage]: https://screwdriver-docs.qubitpi.org
 [hyperctl-image-repo]: https://github.com/screwdriver-cd/hyperctl-image
 [in-a-box-repo]: https://github.com/screwdriver-cd/in-a-box
 [junit-reports-repo]: https://github.com/screwdriver-cd/junit-reports

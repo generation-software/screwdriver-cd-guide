@@ -12,7 +12,7 @@ latest containerization technologies.
 To start using Screwdriver
 --------------------------
 
-For more information about Screwdriver, check out our [homepage](https://screwdriver.cd).
+For more information about Screwdriver, check out our [homepage](https://screwdriver-docs.qubitpi.org).
 
 To start contributing to Screwdriver
 ------------------------------------
