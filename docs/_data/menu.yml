@@ -78,8 +78,8 @@
       url: "/cluster-management/configure-buildcluster-queue-worker"
     - title: Configuring the Artifacts Unzip Service
       url: "/cluster-management/configure-artifacts-unzip-service"
-    - title: "SD-in-a-Box"
-      url: "/cluster-management/running-locally"
+    - title: "Docker Compose"
+      url: "/cluster-management/docker-compose"
     - title: "Setting Up a Screwdriver Cluster on AWS using Kubernetes"
       url: "/cluster-management/kubernetes"
     - title: "Setting Up Zip Artifacts"
