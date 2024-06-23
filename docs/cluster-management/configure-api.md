@@ -406,7 +406,8 @@ executor:
 ```
 
 #### Docker (docker)
-Use the `docker` executor to run in Docker. [sd-in-a-box](./running-locally) also runs using Docker.
+
+Use the `docker` executor to run in Docker. Screwdriver also supports running in [Docker Compose](./docker-compose).
 
 | Environment name       | Default Value | Description          |
 |:-----------------------|:--------------|:---------------------|
