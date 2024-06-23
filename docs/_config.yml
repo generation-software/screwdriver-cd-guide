@@ -41,7 +41,7 @@ exclude:
 site_name: Screwdriver Guide
 site_url: https://screwdriver-docs.qubitpi.org/
 repo_url: https://github.com/QubitPi/screwdriver-cd-guide
-repo_name: screwdriver-cd-guide
+repo_name: GitHub
 site_description: All you need to know about Screwdriver and more
 copyright: © 2016 Yahoo! Inc. All rights reserved.
 extra_css:
