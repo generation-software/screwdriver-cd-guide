@@ -102,6 +102,34 @@ The GitHub OAuth app should have configuration that looks like
 
 ![GH-OAuth](./assets/gh-oauth-app.png)
 
+### Configuring SCM User
+
+```yaml
+version: '2'
+services:
+  api:
+    image: jack20191124/screwdriver:latest
+    environment:
+      SCM_SETTINGS: |
+        {
+            "github": {
+                "plugin": "github",
+                "config": {
+                  "username": "my-scm-user",
+                  "email": "my-scm-user@my-company.com",
+                  "secret": "<my-random-secrets-sderegw3rfe>",
+                  "privateRepo": true,
+                  "oauthClientId": "<generated-with-local-screwdriver>",
+                  "oauthClientSecret": "<generated-with-local-screwdriver>"
+                }
+            }
+        }
+```
+
+__Make sure to add `my-scm-user@my-company.com` to GitHub account/organization's member list for it to obtain proper
+permissions__
+
+
 ### Spin Up Screwdriver
 
 Pull the required runtime images first:
