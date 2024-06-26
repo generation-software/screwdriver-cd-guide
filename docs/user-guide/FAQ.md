@@ -15,6 +15,8 @@ toc:
       url: "#how-do-i-skip-a-build"
     - title: How do I create a pipeline?
       url: "#how-do-i-create-a-pipeline"
+    - title: How do I approve OAuth apps for my organization?
+      url: "#how-do-i-approve-oauth-apps-for-my-organization"
     - title: How do I start a pipeline manually?
       url: "#how-do-i-start-a-pipeline-manually"
     - title: How do I update a pipeline repo and branch?
@@ -134,6 +136,15 @@ _Note: Doesn't apply to pull request builds: a commit message containing `[skip 
 To create a pipeline, click the Create icon and paste a Git URL into the form. Followed by `#` and the branch name, otherwise SCM default branch will be used.
 
 ![Create a pipeline](./assets/create-pipeline.png)
+
+## How do I approve OAuth apps for my organization?
+
+![Error loading create-pipeline-oauth-issue.png](./assets/create-pipeline-oauth-issue.png)
+
+Follow the 2 steps:
+
+1. [Request approval](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-your-membership-in-organizations/requesting-organization-approval-for-oauth-apps)
+2. [Approve OAuth apps for organization](https://docs.github.com/en/organizations/managing-oauth-access-to-your-organizations-data/approving-oauth-apps-for-your-organization)
 
 ## How do I start a pipeline manually?
 
