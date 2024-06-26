@@ -7,6 +7,8 @@ toc:
     - title: Frequently Asked Questions
       url: "#frequently-asked-questions"
       active: true
+    - title: How to Clone Private Repo?
+      url: "#how-to-clone-private-repo-via-ssh"
     - title: How do I skip a step?
       url: "#how-do-i-skip-a-step"
     - title: How do I skip a build?
@@ -66,6 +68,42 @@ toc:
 ---
 
 # Frequently Asked Questions
+
+## How to Clone Private Repo via SSH?
+
+We need to generate __deploy key__ for each private repo to support __cloning via SSH__
+
+First, generate a key pair on a local machine:
+
+```console
+docker run -it ubuntu
+```
+
+In the Ubuntu container:
+
+```console
+apt-get update && apt-get install openssh-client openssl -y
+
+ssh-keygen -t ed25519 -C "my-scm-user@my-company.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+cd ~/.ssh
+```
+
+where `my-scm-user@my-company.com` is the [SCM user](../cluster-management/docker-compose#configuring-scm-user)'s email.
+
+Next:
+
+1. [Base64-encode private key](https://stackoverflow.com/a/60716655):
+
+   ```console
+   openssl enc -base64 -in id_ed25519 -out id_ed25519.base64
+   ```
+
+2. Backup `id_ed25519`, `id_ed25519.pub`, and `id_ed25519.base64` if needed
+3. Remove all new lines in `id_ed25519.base64` so that the files contains __only one line__ without EOF newline
+4. Add a SD secret called `SD_SCM_DEPLOY_KEY` whose value is `id_ed25519.base64` to SD pipelines secrets
+5. Add `id_ed25519.pub` to GitHub deploy key online
 
 ## How do I skip a step?
 
