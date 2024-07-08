@@ -107,8 +107,8 @@ auth:
         - github:batman:234353534554
 ```
 
-_Note: The `234353534554` or `234245245245` above can be
-[obtained using GitHub API](https://stackoverflow.com/a/17309026) _
+Note: The `234353534554` or `234245245245` above can be
+[obtained using GitHub API](https://stackoverflow.com/a/17309026)
 
 ### Multibuild Cluster
 
