@@ -11,6 +11,8 @@ toc:
       url: "#git-clone-step-fails"
     - title: Republishing Template or Command Fail with 403
       url: "#republishing-template-or-command-fail-with-403"
+    - title: Store API 404 Not Found
+      url: "#store-api-404-not-found"
 ---
 
 Troubleshooting
@@ -47,3 +49,11 @@ Republishing Template or Command Fail with 403
 ```
 
 Simply delete the template or command that has already been published and try again.
+
+Store API 404 Not Found
+-----------------------
+
+![Error loading docker-compose.png](./assets/store-api-not-found.png)
+
+This happens when we are trying to execute a [Screwdriver Command](commands) after a Screwdriver restart. This might be
+a Screwdriver bug. We can get around this for now by republishing the commands.
