@@ -132,13 +132,7 @@ permissions__
 
 ### Spin Up Screwdriver
 
-Pull the required runtime images first:
-
-```console
-docker pull screwdrivercd/launcher
-```
-
-Then start Screwdriver with:
+Start Screwdriver with:
 
 ```console
 nohup docker compose -p screwdriver up &
