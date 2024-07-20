@@ -57,3 +57,10 @@ Store API 404 Not Found
 
 This happens when we are trying to execute a [Screwdriver Command](commands) after a Screwdriver restart. This might be
 a Screwdriver bug. We can get around this for now by republishing the commands.
+
+context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+--------------------------------------------------------------------------
+
+If this is happening on POSTing Screwdriver API server and things are running on a cloud provider, such as AWS, this
+might not be a Screwdriver issue but the firewall mis-config of the cloud provider. For example, the Security Group of
+AWS is not opening up the port of Screwdriver API which causes the request timeout.
