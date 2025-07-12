@@ -2,7 +2,6 @@ Screwdriver Documentation
 =========================
 
 ![Netlify](https://img.shields.io/netlify/4cf389eb-91ee-41f0-a7d3-dfadf72cb598?style=for-the-badge&logo=netlify&logoColor=white&labelColor=00C7B7)
-[![GitHub Workflow Status][GitHub Workflow Status badge]][GitHub Workflow Status URL]
 
 > Documentation for the Screwdriver CD service
 
@@ -150,5 +149,3 @@ Please check GitHub Action build log and we will see there was actually error:
 
 ![Error loading build-error.png](./build-error.png)
 
-[GitHub Workflow Status badge]: https://img.shields.io/github/actions/workflow/status/generation-software/screwdriver-cd-guide/ci-cd.yml?branch=master&logo=github&style=for-the-badge
-[GitHub Workflow Status URL]: https://github.com/generation-software/screwdriver-cd-guide/actions/workflows/ci-cd.yml
