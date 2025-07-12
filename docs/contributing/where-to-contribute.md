@@ -255,7 +255,7 @@ acceptance tests for [Screwdriver.cd](https://cd.screwdriver.cd).
 [cmd-install-node-repo]: https://github.com/QubitPi/screwdriver-cd-cmd-install-node
 [cmd-docker-trigger-repo]: https://github.com/QubitPi/screwdriver-cd-cmd-docker-trigger
 [config-parser-repo]: https://github.com/QubitPi/screwdriver-cd-config-parser
-[contributing-docs]: https://github.com/QubitPi/screwdriver-cd-guide/blob/master/docs/about/contributing/where-to-contribute.md
+[contributing-docs]: https://github.com/generation-software/screwdriver-cd-guide/blob/master/docs/about/contributing/where-to-contribute.md
 [coverage-base-repo]: https://github.com/QubitPi/screwdriver-cd-coverage-base
 [coverage-bookend-repo]: https://github.com/QubitPi/screwdriver-cd-coverage-bookend
 [coverage-sonar-repo]: https://github.com/QubitPi/screwdriver-cd-coverage-sonar
@@ -270,9 +270,9 @@ acceptance tests for [Screwdriver.cd](https://cd.screwdriver.cd).
 [executor-queue-repo]: https://github.com/QubitPi/screwdriver-cd-executor-queue
 [executor-router-repo]: https://github.com/QubitPi/screwdriver-cd-executor-router
 [gitversion-repo]: https://github.com/QubitPi/screwdriver-cd-gitversion
-[guide-repo]: https://github.com/QubitPi/screwdriver-cd-guide
+[guide-repo]: https://github.com/generation-software/screwdriver-cd-guide
 [homepage-repo]: https://github.com/QubitPi/screwdriver-cd-homepage
-[homepage]: https://screwdriver-docs.qubitpi.org
+[homepage]: https://screwdriver-docs.netlify.app
 [hyperctl-image-repo]: https://github.com/QubitPi/screwdriver-cd-hyperctl-image
 [in-a-box-repo]: https://github.com/QubitPi/screwdriver-cd-in-a-box
 [junit-reports-repo]: https://github.com/QubitPi/screwdriver-cd-junit-reports
