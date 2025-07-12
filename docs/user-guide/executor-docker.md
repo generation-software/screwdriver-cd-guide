@@ -86,5 +86,5 @@ could not find the file on the host because it is running Docker-in-Docker_. Bei
 [dockerode]: https://github.com/apocas/dockerode
 
 [screwdriver-cd-executor-docker]: https://github.com/QubitPi/screwdriver-cd-executor-docker
-[screwdriver steps]: https://screwdriver-docs.qubitpi.org/user-guide/quickstart#steps
+[screwdriver steps]: https://screwdriver-docs.netlify.app/user-guide/quickstart#steps
 [Screwdriver config file]: https://github.com/QubitPi/screwdriver-cd-screwdriver/blob/master/config/default.yaml
