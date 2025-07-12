@@ -1,8 +1,8 @@
 Screwdriver Documentation
 =========================
 
+![Netlify](https://img.shields.io/netlify/4cf389eb-91ee-41f0-a7d3-dfadf72cb598?style=for-the-badge&logo=netlify&logoColor=white&labelColor=00C7B7)
 [![GitHub Workflow Status][GitHub Workflow Status badge]][GitHub Workflow Status URL]
-![Last Commit][GitHub Commit badge]
 
 > Documentation for the Screwdriver CD service
 
@@ -12,7 +12,7 @@ latest containerization technologies.
 To start using Screwdriver
 --------------------------
 
-For more information about Screwdriver, check out our [homepage](https://screwdriver-docs.qubitpi.org).
+For more information about Screwdriver, check out our [homepage](https://screwdriver-docs.netlify.app).
 
 To start contributing to Screwdriver
 ------------------------------------
@@ -150,6 +150,5 @@ Please check GitHub Action build log and we will see there was actually error:
 
 ![Error loading build-error.png](./build-error.png)
 
-[GitHub Workflow Status badge]: https://img.shields.io/github/actions/workflow/status/QubitPi/screwdriver-cd-guide/ci-cd.yml?branch=master&logo=github&style=for-the-badge
-[GitHub Workflow Status URL]: https://github.com/QubitPi/screwdriver-cd-guide/actions/workflows/ci-cd.yml
-[GitHub Commit badge]: https://img.shields.io/github/last-commit/QubitPi/screwdriver-cd-guide/master?logo=github&style=for-the-badge
+[GitHub Workflow Status badge]: https://img.shields.io/github/actions/workflow/status/generation-software/screwdriver-cd-guide/ci-cd.yml?branch=master&logo=github&style=for-the-badge
+[GitHub Workflow Status URL]: https://github.com/generation-software/screwdriver-cd-guide/actions/workflows/ci-cd.yml

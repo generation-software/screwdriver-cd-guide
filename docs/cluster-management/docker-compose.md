@@ -86,7 +86,7 @@ Modify the `docker-compose.yml`:
   sure that only the specified user can sign-in to see all dashboard pipelines
 
   More infor about these 3 configs can be found at
-  [Authentication/Authorization docs](https://screwdriver-docs.qubitpi.org/cluster-management/configure-api#authentication--authorization)
+  [Authentication/Authorization docs](https://screwdriver-docs.netlify.app/cluster-management/configure-api#authentication--authorization)
 
 [Set up the SSL certificate](https://hashicorp-aws.com/docs/setup#installing-free-ssl-certificates-with-certbot-running-on-nginx)
 on the server with the following Nginx reverse proxy configs:
